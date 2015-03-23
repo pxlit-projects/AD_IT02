@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "finah-desktop", "finah-desktop\finah-desktop.csproj", "{AF409E8D-7821-4125-832A-86B8B6207596}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "finah-desktop", "finah-desktop\finah-desktop.csproj", "{3D22ED42-2995-477A-AA35-D37763F01C23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AF409E8D-7821-4125-832A-86B8B6207596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF409E8D-7821-4125-832A-86B8B6207596}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF409E8D-7821-4125-832A-86B8B6207596}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF409E8D-7821-4125-832A-86B8B6207596}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D22ED42-2995-477A-AA35-D37763F01C23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D22ED42-2995-477A-AA35-D37763F01C23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D22ED42-2995-477A-AA35-D37763F01C23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D22ED42-2995-477A-AA35-D37763F01C23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
