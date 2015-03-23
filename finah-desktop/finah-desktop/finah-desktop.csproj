@@ -72,8 +72,15 @@
       <DependentUpon>login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Onderzoeker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Onderzoeker.xaml.cs">
+      <DependentUpon>Onderzoeker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
