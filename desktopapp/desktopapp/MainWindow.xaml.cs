@@ -36,7 +36,7 @@ namespace desktopapp
         {
             try
             {
-                test = UserDB.GetLogin(usr.Text, ww.Text);
+                test = UserDB.GetLogin(txtNaam.Text, txtWachtwoord.Text);
                 if (test == null)
                 {
                     MessageBox.Show("Gebruikersnaam/Wachtwoord is fout.");
