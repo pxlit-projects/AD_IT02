@@ -55,8 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+<<<<<<< HEAD
     <Compile Include="UserDB.cs" />
     <Compile Include="Users.cs" />
+=======
+    <Page Include="Hulpverlener.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+>>>>>>> ef587f8aa6ba607a9ced966b978e015573ffb2e7
     <Page Include="login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -65,13 +72,26 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Connectie.cs" />
+=======
+    <Compile Include="Hulpverlener.xaml.cs">
+      <DependentUpon>Hulpverlener.xaml</DependentUpon>
+    </Compile>
+>>>>>>> ef587f8aa6ba607a9ced966b978e015573ffb2e7
     <Compile Include="login.xaml.cs">
       <DependentUpon>login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Onderzoeker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Onderzoeker.xaml.cs">
+      <DependentUpon>Onderzoeker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -97,6 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
