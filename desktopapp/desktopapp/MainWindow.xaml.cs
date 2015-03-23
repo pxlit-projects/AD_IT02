@@ -27,25 +27,32 @@ namespace desktopapp
         {
             InitializeComponent();
 
+           
+
+        }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
             try
             {
-                test = UserDB.GetLogin("illy", "illy");
+                test = UserDB.GetLogin(usr.Text, ww.Text);
                 if (test == null)
                 {
-                    MessageBox.Show("verkeerd error");
+                    MessageBox.Show("Gebruikersnaam/Wachtwoord is fout.");
+                }
+                else
+                {
+                    hulpverlener hulp= new hulpverlener();
+                    hulp.Show();
+                    Close();
                 }
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("fuckt");
+                MessageBox.Show("Error connectie niet mogelijk.");
             }
-
-        }
-
-        private void knop_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
