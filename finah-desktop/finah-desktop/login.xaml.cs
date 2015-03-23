@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Web.Security;
 
 namespace finah_desktop
 {
@@ -23,8 +24,31 @@ namespace finah_desktop
         public MainWindow()
         {
             InitializeComponent();
-        }
+            try
+            {
 
-       
+                if (Membership.GetUser("admin2") == null)
+                {
+                    Membership.CreateUser("admin2", "Pass!2");
+
+                }
+
+
+
+                if (!Roles.RoleExists("Administrator"))
+                    Roles.CreateRole("Administrator");
+                if (!Roles.RoleExists("User"))
+                    Roles.CreateRole("User");
+                if (!Roles.IsUserInRole("admin2", "Administrator"))
+                    Roles.AddUserToRole("admin2", "Administrator");
+            }
+            catch (MemberAccessException ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+        }
     }
+
 }
+
