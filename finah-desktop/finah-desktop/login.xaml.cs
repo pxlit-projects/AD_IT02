@@ -21,31 +21,34 @@ namespace finah_desktop
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Users test;
         public MainWindow()
         {
             InitializeComponent();
+           
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
             try
             {
-
-                if (Membership.GetUser("admin2") == null)
+                test = UserDB.GetLogin(usr.Text, ww.Text);
+                if (test == null)
                 {
-                    Membership.CreateUser("admin2", "Pass!2");
-
+                    MessageBox.Show("verkeerd error");
+                }
+                else
+                {
+                    MessageBox.Show("gelukt");
                 }
 
-
-
-                if (!Roles.RoleExists("Administrator"))
-                    Roles.CreateRole("Administrator");
-                if (!Roles.RoleExists("User"))
-                    Roles.CreateRole("User");
-                if (!Roles.IsUserInRole("admin2", "Administrator"))
-                    Roles.AddUserToRole("admin2", "Administrator");
             }
-            catch (MemberAccessException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                MessageBox.Show("fuckt");
             }
+            
 
         }
     }
