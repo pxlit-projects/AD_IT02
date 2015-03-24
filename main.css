@@ -13,7 +13,24 @@ div{
     margin-top: 5px;
     margin-bottom: 5px;
 }
-
 #knoppen{
-       
+    width: 100%;   
+}
+.knop_l{
+    float: left;
+    width: 33%;
+}
+.label_m{
+    text-align: center;
+    width: 33%;
+    float: left;
+}
+.knop_r{
+    float: left;
+    width: 33%;
+    text-align: right;
+}
+button{
+    width: 12em;  
+    height: 5em;
 }
