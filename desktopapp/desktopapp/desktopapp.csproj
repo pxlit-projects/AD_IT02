@@ -83,6 +83,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="classes\Functie.cs" />
+    <Compile Include="classes\Gemeente.cs" />
+    <Compile Include="classes\Hulpverlener.cs" />
     <Compile Include="classes\Connectie.cs" />
     <Compile Include="classes\UserDB.cs" />
     <Compile Include="classes\Users.cs" />
