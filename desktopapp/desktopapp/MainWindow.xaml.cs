@@ -17,41 +17,42 @@ using Finah;
 
 namespace desktopapp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private Users test;
         public MainWindow()
         {
             InitializeComponent();
-
-           
-
         }
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                test = UserDB.GetLogin(txtNaam.Text, txtWachtwoord.Text);
-                if (test == null)
-                {
-                    MessageBox.Show("Gebruikersnaam/Wachtwoord is fout.");
-                }
-                else
-                {
-                    hulpverlener hulp= new hulpverlener();
-                    hulp.Show();
-                    Close();
-                }
-
+                Login();
             }
-            catch (Exception ex)
+            catch (Exception ex){
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Login()
+        {
+            test = UserDB.GetLogin(txtNaam.Text, txtWachtwoord.Password);
+            if (test == null)
             {
-                MessageBox.Show("Error connectie niet mogelijk.");
+                MessageBox.Show("Gebruikersnaam/Wachtwoord is fout.");
+            }
+            else
+            {
+                hulpverlener hulp = new hulpverlener();
+                hulp.Show();
+                Close();
             }
         }
     }
