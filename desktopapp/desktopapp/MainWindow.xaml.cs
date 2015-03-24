@@ -19,7 +19,7 @@ namespace desktopapp
 {
     public partial class MainWindow : Window
     {
-        private Users test;
+        private Gebruikers test;
         public MainWindow()
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace desktopapp
                 Login();
             }
             catch (Exception ex){
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message,"error");
             }
         }
 

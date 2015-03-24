@@ -8,8 +8,8 @@ namespace desktopapp.classes
 {
     class Gemeente
     {
-        private String postcode;
-        private String gemeente;
+        private String postcode{ set; get;}
+        private String gemeente { set; get; }
 
         public Gemeente(String postcode, String gemeente)
         {
@@ -17,18 +17,5 @@ namespace desktopapp.classes
             this.gemeente = gemeente;
 
         }
-        
-        public String Postcode
-        {
-            get { return postcode; }
-            set { postcode = value; }
-        }
-
-        public String Gemeente
-        {
-            get { return gemeente; }
-            set { gemeente = value; }
-        }
-        
     }
 }

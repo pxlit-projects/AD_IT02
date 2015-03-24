@@ -88,7 +88,7 @@
     <Compile Include="classes\Hulpverlener.cs" />
     <Compile Include="classes\Connectie.cs" />
     <Compile Include="classes\UserDB.cs" />
-    <Compile Include="classes\Users.cs" />
+    <Compile Include="classes\Gebruikers.cs" />
     <Compile Include="hulpverlener.xaml.cs">
       <DependentUpon>hulpverlener.xaml</DependentUpon>
     </Compile>
