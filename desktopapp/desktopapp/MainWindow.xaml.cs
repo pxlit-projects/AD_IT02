@@ -13,13 +13,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Finah;
+using desktopapp;
+using desktopapp.classes;
 
 namespace desktopapp
 {
     public partial class MainWindow : Window
     {
-        private Gebruikers test;
+        private Persoon test;
         public MainWindow()
         {
             InitializeComponent();

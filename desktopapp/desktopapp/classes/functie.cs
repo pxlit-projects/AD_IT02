@@ -6,30 +6,17 @@ using System.Threading.Tasks;
 
 namespace desktopapp.classes
 {
-    class Functie
+    public class Functie
     {
-        private String functienaam;
-        private String beschrijving;
+        //Getters and Setters 
+        public String functienaam { get; set; }
+        public String beschrijving { get; set; }
 
+        //Constructors
         public Functie(String functienaam, String beschrijving)
         {
             this.functienaam = functienaam;
             this.beschrijving = beschrijving;
-
         }
-        
-        public String Beschrijving
-        {
-            get { return beschrijving; }
-            set { beschrijving = value; }
-        }
-
-        public String Functienaam
-        {
-            get { return functienaam; }
-            set { functienaam = value; }
-        }
-
-
     }
 }

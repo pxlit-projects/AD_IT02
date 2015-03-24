@@ -71,7 +71,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="hulpverlener.xaml">
+    <Page Include="Aanvraag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPaneel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hulpverlener.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -79,31 +87,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Aanvraag.xaml.cs">
+      <DependentUpon>Aanvraag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPaneel.xaml.cs">
+      <DependentUpon>AdminPaneel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="classes\Functie.cs" />
     <Compile Include="classes\Gemeente.cs" />
-    <Compile Include="classes\Hulpverlener.cs" />
     <Compile Include="classes\Connectie.cs" />
+    <Compile Include="classes\Persoon.cs" />
     <Compile Include="classes\UserDB.cs" />
-    <Compile Include="classes\Gebruikers.cs" />
-    <Compile Include="hulpverlener.xaml.cs">
-      <DependentUpon>hulpverlener.xaml</DependentUpon>
+    <Compile Include="Hulpverlener.xaml.cs">
+      <DependentUpon>Hulpverlener.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="onderzoeker.xaml">
+    <Page Include="Onderzoeker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="onderzoeker.xaml.cs">
-      <DependentUpon>onderzoeker.xaml</DependentUpon>
+    <Compile Include="Onderzoeker.xaml.cs">
+      <DependentUpon>Onderzoeker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
