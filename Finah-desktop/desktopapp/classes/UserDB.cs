@@ -17,7 +17,7 @@ namespace desktopapp
             // connectie string gaan ophalen
             SqlConnection conn = Connectie.getCon();
 
-            string Statement = "SELECT gebruikersnaam, wachtwoord " +
+            string Statement = "SELECT gebruikersnaam, wachtwoord, functie " +
                 "FROM Persoon " +
                 "WHERE gebruikersnaam=@naam AND wachtwoord=@wachtwoord";
             SqlCommand command = new SqlCommand(Statement, conn);
@@ -38,6 +38,7 @@ namespace desktopapp
                 {
                     test.gebruikersnaam = reader["gebruikersnaam"].ToString();
                     test.wachtwoord = reader["wachtwoord"].ToString();
+                    test.functie = Convert.ToInt32(reader["functie"]);
 
                 }
                 else
@@ -56,5 +57,9 @@ namespace desktopapp
             }
             return test;
         }
+
+       
+            
+        }
     }
-}
+
