@@ -100,6 +100,7 @@
     <Compile Include="classes\Functie.cs" />
     <Compile Include="classes\Gemeente.cs" />
     <Compile Include="classes\Connectie.cs" />
+    <Compile Include="classes\Login.cs" />
     <Compile Include="classes\Persoon.cs" />
     <Compile Include="classes\UserDB.cs" />
     <Compile Include="Hulpverlener.xaml.cs">

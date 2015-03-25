@@ -51,8 +51,7 @@ namespace desktopapp
             }
             else
             {
-                
-                Login gebruiker = new Login(txtNaam.Text);
+                int functie = test.functie;
                 hulpverlener hulp = new hulpverlener();
                 hulp.Show();
                 Close();
