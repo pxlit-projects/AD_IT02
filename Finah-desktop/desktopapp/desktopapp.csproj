@@ -109,12 +109,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MijnAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Onderzoeker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MijnAccount.xaml.cs">
+      <DependentUpon>MijnAccount.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Onderzoeker.xaml.cs">
       <DependentUpon>Onderzoeker.xaml</DependentUpon>
     </Compile>
