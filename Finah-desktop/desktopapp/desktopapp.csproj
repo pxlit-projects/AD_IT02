@@ -53,6 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -97,12 +98,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="classes\Categorie.cs" />
     <Compile Include="classes\Functie.cs" />
     <Compile Include="classes\Gemeente.cs" />
-    <Compile Include="classes\Connectie.cs" />
-    <Compile Include="classes\Login.cs" />
+    <Compile Include="classes\Patient.cs" />
     <Compile Include="classes\Persoon.cs" />
-    <Compile Include="classes\UserDB.cs" />
+    <Compile Include="DAL.cs" />
     <Compile Include="Hulpverlener.xaml.cs">
       <DependentUpon>Hulpverlener.xaml</DependentUpon>
     </Compile>
@@ -171,6 +172,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

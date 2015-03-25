@@ -10,10 +10,12 @@
         <TabControl HorizontalAlignment="Left" Height="436" Margin="140,160,0,0" VerticalAlignment="Top" Width="718">
             <TabItem Header="Overzicht">
                 <Grid Background="#FFFFFF">
-                    <DataGrid x:Name="dg_OverzichtOnderzoeker" HorizontalAlignment="Left" Margin="26,39,0,0" VerticalAlignment="Top" Height="340" Width="660"/>
+                    <DataGrid x:Name="dg_OverzichtOnderzoeker" HorizontalAlignment="Left" Margin="26,76,0,0" VerticalAlignment="Top" Height="303" Width="660"/>
+                    <Button Content="Nieuwe aanvraag" HorizontalAlignment="Left" Margin="26,32,0,0" VerticalAlignment="Top" Width="99" Click="Button_Click_2"/>
                 </Grid>
             </TabItem>
         </TabControl>
+        <TextBox Name="txtwelkom" HorizontalAlignment="Left" Height="23" Margin="269,82,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

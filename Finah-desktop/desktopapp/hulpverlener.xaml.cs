@@ -22,6 +22,7 @@ namespace desktopapp
         public hulpverlener()
         {
             InitializeComponent();
+            txtwelkom.Text = MainWindow.gebruiker.gebruikersnaam.ToString();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -34,7 +35,14 @@ namespace desktopapp
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            
+            MijnAccount mijnaccount = new MijnAccount();
+            mijnaccount.ShowDialog();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Aanvraag aanvraag = new Aanvraag();
+            aanvraag.ShowDialog();
         }
     }
 }

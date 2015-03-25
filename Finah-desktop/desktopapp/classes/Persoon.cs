@@ -30,7 +30,7 @@ namespace desktopapp.classes
         {
 
         }
-        public void GetLogin(string gebruikersnaam, string wachtwoord)
+        public Persoon(string gebruikersnaam, string wachtwoord)
         {
             this.gebruikersnaam = gebruikersnaam;
             this.wachtwoord = wachtwoord;

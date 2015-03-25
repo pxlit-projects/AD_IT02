@@ -20,10 +20,13 @@ namespace desktopapp
 {
     public partial class MainWindow : Window
     {
-        private Persoon test;
+        public static Persoon gebruiker;
+        private DAL dal = new DAL();
+
         public MainWindow()
         {
             InitializeComponent();
+            gebruiker = null;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -44,16 +47,28 @@ namespace desktopapp
 
         private void Login()
         {
-            test = UserDB.GetLogin(txtNaam.Text, txtWachtwoord.Password);
-            if (test == null)
+            gebruiker = dal.getGebruiker(txtNaam.Text,txtWachtwoord.Password);
+            if (gebruiker == null)
             {
                 MessageBox.Show("Gebruikersnaam/Wachtwoord is fout.");
             }
             else
             {
-                int functie = test.functie;
-                hulpverlener hulp = new hulpverlener();
-                hulp.Show();
+                switch (gebruiker.functie)
+                {
+                    case 1:
+                        AdminPaneel admin = new AdminPaneel();
+                        admin.Show();
+                        break;
+                    case 2:
+                        hulpverlener onderzoeker = new hulpverlener();
+                        onderzoeker.Show();
+                        break;
+                    default:
+                        hulpverlener hulpverlener = new hulpverlener();
+                        hulpverlener.Show();
+                        break;
+                }
                 Close();
             }
         }

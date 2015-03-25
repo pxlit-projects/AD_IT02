@@ -8,26 +8,17 @@ namespace desktopapp.classes
 {
     class Categorie
     {
-        private String naam;
-        private String beschrijving;
+        //Getters and Setters 
+        public int id { get; set; }
+        public string naam { get; set; }
+        public string beschrijving { get; set; }
 
-        public Categorie(String naam, String beschrijving)
+        //Constructors
+        public Categorie(int id, string naam, string beschrijving)
         {
+            this.id = id;
             this.naam = naam;
             this.beschrijving = beschrijving;
         }
-        
-        public String Beschrijving
-        {
-            get { return beschrijving; }
-            set { beschrijving = value; }
-        }
-
-        public String Naam
-        {
-            get { return naam; }
-            set { naam = value; }
-        }
-
     }
 }
