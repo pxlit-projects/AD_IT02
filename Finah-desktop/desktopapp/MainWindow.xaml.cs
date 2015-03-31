@@ -22,6 +22,7 @@ namespace desktopapp
     {
         public static Persoon gebruiker;
         private DAL dal = new DAL();
+        public Persoon login;
 
         public MainWindow()
         {
@@ -54,6 +55,8 @@ namespace desktopapp
             }
             else
             {
+                login = gebruiker;
+                
                 switch (gebruiker.functie)
                 {
                     case 1:
@@ -71,6 +74,22 @@ namespace desktopapp
                 }
                 Close();
             }
+        }
+
+        private void txtWachtwoord_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                try
+                {
+                    Login();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "error");
+                }  
+            }
+           
         }
     }
 }

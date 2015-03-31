@@ -9,7 +9,7 @@ namespace desktopapp.classes
     public class Persoon
     {
         //Getters and Setters 
-        public String Id { get; set; }
+        public int Id { get; set; }
         public String naam { get; set; }
         public String voornaam { get; set; }
         public DateTime geboortejaar { get; set; }
@@ -34,6 +34,7 @@ namespace desktopapp.classes
         {
             this.gebruikersnaam = gebruikersnaam;
             this.wachtwoord = wachtwoord;
+
         }
     }
 }

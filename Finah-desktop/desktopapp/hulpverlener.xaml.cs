@@ -22,7 +22,7 @@ namespace desktopapp
         public hulpverlener()
         {
             InitializeComponent();
-            txtwelkom.Text = MainWindow.gebruiker.gebruikersnaam.ToString();
+            txtwelkom.Content = MainWindow.gebruiker.gebruikersnaam.ToString();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

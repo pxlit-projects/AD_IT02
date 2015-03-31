@@ -11,9 +11,9 @@ namespace desktopapp.classes
 {
     class DAL
     {
-        private string ConnectionData = ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString;
+        private static string ConnectionData = ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString;
         private SqlConnection Connection;
-        private SqlCommand command;
+        private static SqlCommand command;
 
         public DAL()
         {
@@ -41,6 +41,19 @@ namespace desktopapp.classes
                             gebruiker.gebruikersnaam = dr["gebruikersnaam"].ToString();
                             gebruiker.wachtwoord = dr["wachtwoord"].ToString();
                             gebruiker.functie = Convert.ToInt32(dr["functie"]);
+                            gebruiker.Id = Convert.ToInt32(dr["Id"]);
+                            gebruiker.naam = dr["naam"].ToString();
+                            gebruiker.voornaam = dr["voornaam"].ToString();
+                            gebruiker.geboortejaar = Convert.ToDateTime(dr["geboortejaar"]);
+                            gebruiker.geslacht = Convert.ToChar(dr["geslacht"].ToString());
+                            gebruiker.straat = dr["straat"].ToString();
+                            gebruiker.postcode = Convert.ToInt32(dr["postcode"]);
+                            gebruiker.telefoon = dr["telefoon"].ToString();
+                            gebruiker.gsm = dr["gsm"].ToString();
+                            gebruiker.bedrijf = dr["bedrijf"].ToString();
+                            gebruiker.email = dr["email"].ToString();
+                           
+
                         }
                         else
                         {
@@ -123,6 +136,46 @@ namespace desktopapp.classes
                 {
                     transaction.Rollback();
                     return null;
+                }
+            }
+        }
+
+        public static void insertPersoon(Persoon p)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionData))
+            {
+                SqlTransaction transaction = null;
+                try
+                {
+                    connection.Open();
+                    command = new SqlCommand("insertPersoon", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Transaction = transaction;
+                    command.Parameters.Add(new SqlParameter("@naam", p.naam));
+                    command.Parameters.Add(new SqlParameter("@voornaam", p.voornaam));
+                    command.Parameters.Add(new SqlParameter("@geboortejaar", p.geboortejaar));
+                    command.Parameters.Add(new SqlParameter("@geslacht", p.geslacht));
+                    command.Parameters.Add(new SqlParameter("@straat", p.straat));
+                    command.Parameters.Add(new SqlParameter("@postcode", p.postcode));
+                    command.Parameters.Add(new SqlParameter("@gsm", p.gsm));
+                    command.Parameters.Add(new SqlParameter("@bedrijf", p.bedrijf));
+                    command.Parameters.Add(new SqlParameter("@gebruikersnaam", p.gebruikersnaam));
+                    command.Parameters.Add(new SqlParameter("@wachtwoord", p.wachtwoord));
+                    command.Parameters.Add(new SqlParameter("@telefoon", p.telefoon));
+                    command.Parameters.Add(new SqlParameter("@email", p.email));
+                    command.Parameters.Add(new SqlParameter("@id", p.Id));
+
+                    
+                    command.Connection = connection;
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    transaction.Rollback();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
                 }
             }
         }
