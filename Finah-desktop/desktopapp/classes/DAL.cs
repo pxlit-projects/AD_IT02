@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Windows;
 using System.Windows.Media.Media3D;
 using desktopapp.classes;
 using Newtonsoft.Json;
@@ -31,19 +32,29 @@ namespace desktopapp.classes
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                
-        
-        var task = client.GetAsync("api/Persoons?gebruikersnaam="+gebruikersnaam+"&wachtwoord="+wachtwoord)
-            .ContinueWith((taskwithresponse)=>
+
+                try
                 {
-                    var response = taskwithresponse.Result;
-                    var jsonString = response.Content.ReadAsStringAsync();
-                    jsonString.Wait();
-                    model = JsonConvert.DeserializeObject<List<Persoon>>(jsonString.Result);
-                });
-                task.Wait();
-                Gebruiker = model.Find(x => x.gebruikersnaam == gebruikersnaam);
-        Console.WriteLine(Gebruiker.ToString());
+                    var task = client.GetAsync("api/Persoons?gebruikersnaam=" + gebruikersnaam + "&wachtwoord=" + wachtwoord)
+           .ContinueWith((taskwithresponse) =>
+           {
+               var response = taskwithresponse.Result;
+               var jsonString = response.Content.ReadAsStringAsync();
+               jsonString.Wait();
+
+               model = JsonConvert.DeserializeObject<List<Persoon>>(jsonString.Result);
+           });
+                    task.Wait();
+
+                    Gebruiker = model.Find(x => x.gebruikersnaam == gebruikersnaam);
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("Gebruikersnaam ofwachtwoord fout.");
+                }  
+       
+        
         
     
 }
