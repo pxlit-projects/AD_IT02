@@ -5,13 +5,15 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Windows.Media.Media3D;
 using desktopapp.classes;
+using Newtonsoft.Json;
 
 namespace desktopapp.classes
 {
    public class DAL
    {
-       private Persoon Gebruiker;
+       public Persoon Gebruiker;
 
 
         public DAL()
@@ -21,7 +23,7 @@ namespace desktopapp.classes
 
         public async void getGebruiker(string gebruikersnaam, string wachtwoord) //MOET NOG AAN GEWERKT WORDEN
         {
-            
+            List<Persoon> model = null;
             using (var client = new HttpClient())
             {
                 // New code:
@@ -29,14 +31,21 @@ namespace desktopapp.classes
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                 HttpResponseMessage response =client.GetAsync("api/Persoons?gebruikersnaam="+gebruikersnaam+"&wachtwoord="+wachtwoord).Result;
-    if (response.IsSuccessStatusCode)
-    {
+                
         
-        Gebruiker = await response.Content.ReadAsAsync<Persoon>();
-        Console.WriteLine(Gebruiker);
+        var task = client.GetAsync("api/Persoons?gebruikersnaam="+gebruikersnaam+"&wachtwoord="+wachtwoord)
+            .ContinueWith((taskwithresponse)=>
+                {
+                    var response = taskwithresponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    model = JsonConvert.DeserializeObject<List<Persoon>>(jsonString.Result);
+                });
+                task.Wait();
+                Gebruiker = model.Find(x => x.gebruikersnaam == gebruikersnaam);
+        Console.WriteLine(Gebruiker.ToString());
         
-    }
+    
 }
             }
 
