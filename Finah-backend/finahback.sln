@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "finahback", "finahback\finahback.csproj", "{E0F42A6F-3A82-495F-8189-C325211E0B8E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{2877EE84-076C-4D63-8CB6-F11E92E20FA8}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{3A3BB9BA-25A3-4950-8F23-F7FCCEB70949}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\finahback-WAWS-dev.json = PublishScripts\Configurations\finahback-WAWS-dev.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BD217BC6-1C80-4FE9-ADBE-01256CFE48F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0F42A6F-3A82-495F-8189-C325211E0B8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0F42A6F-3A82-495F-8189-C325211E0B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0F42A6F-3A82-495F-8189-C325211E0B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0F42A6F-3A82-495F-8189-C325211E0B8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3A3BB9BA-25A3-4950-8F23-F7FCCEB70949} = {2877EE84-076C-4D63-8CB6-F11E92E20FA8}
+	EndGlobalSection
+EndGlobal

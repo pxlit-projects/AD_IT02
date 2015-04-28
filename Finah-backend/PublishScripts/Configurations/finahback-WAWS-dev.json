@@ -1,0 +1,21 @@
+{
+    "environmentSettings": {
+        "webSite": {
+            "name": "finahback",
+            "location": "West Europe"
+        },
+        "databases": [
+            {
+                "connectionStringName": "defaultConnection",
+                "databaseName": "finahback_db",
+                "serverName": "finah",
+                "user": "finah",
+                "password": "",
+                "edition": "",
+                "size": "",
+                "collation": "",
+                "location": "West Europe"
+            }
+        ]
+    }
+}
