@@ -18,7 +18,7 @@ namespace desktopapp.classes
         public int postcode { get; set; }
         public String telefoon { get; set; }
         public String gsm { get; set; }
-        public int functie { get; set; }
+        public int functieID { get; set; }
         public String bedrijf { get; set; }
         public String email { get; set; }
         public String gebruikersnaam { get; set; }

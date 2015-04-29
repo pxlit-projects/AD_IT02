@@ -57,7 +57,7 @@ namespace desktopapp
             {
                 login = gebruiker;
                 
-                switch (gebruiker.functie)
+                switch (gebruiker.functieID)
                 {
                     case 1:
                         AdminPaneel admin = new AdminPaneel();

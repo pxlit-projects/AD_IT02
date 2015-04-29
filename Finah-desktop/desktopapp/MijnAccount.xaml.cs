@@ -123,7 +123,8 @@ namespace desktopapp
             MainWindow.gebruiker.telefoon = telefoon.Text;
             MainWindow.gebruiker.gsm = gsm.Text;
             MainWindow.gebruiker.bedrijf = bedrijf.Text;
-            
+            MainWindow.gebruiker.functieID = MainWindow.gebruiker.functieID;
+
         }
 
         private void annuleer_Click(object sender, RoutedEventArgs e)
