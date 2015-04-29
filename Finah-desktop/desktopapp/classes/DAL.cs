@@ -66,6 +66,8 @@ namespace desktopapp.classes
 
         public static async Task<int> UpdateGebruiker(Persoon per) //Wijzig Persoonsgegevens in database
         {
+           
+
             using (var client = new HttpClient())
             {
                 // Connectie:
@@ -73,7 +75,7 @@ namespace desktopapp.classes
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                Uri uri = new Uri(client.BaseAddress + "api/Patients/");
+                Uri uri = new Uri(client.BaseAddress + "api/Persoons/"+per.Id);
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
                 String json = JsonConvert.SerializeObject(per);
                 httpRequestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -82,8 +84,10 @@ namespace desktopapp.classes
                 {
                     Uri gizmoUrl = response.Headers.Location;
                 }
-                return 1;
+               
             }
+            
+            return 1;
             
         }
         public async Task<int> insertPatient(Patient p) //Nieuwe patient ingeven

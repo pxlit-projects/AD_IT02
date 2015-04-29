@@ -98,7 +98,7 @@ namespace desktopapp
             geboorte.Text = MainWindow.gebruiker.geboortejaar.ToString(CultureInfo.CurrentCulture);
             postcode.Text = MainWindow.gebruiker.postcode.ToString();
 
-            geslacht.Text = "m";
+            geslacht.Text = MainWindow.gebruiker.geslacht.ToString();
             
             
             straat.Text = MainWindow.gebruiker.straat.ToString();
