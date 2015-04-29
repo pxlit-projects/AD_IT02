@@ -36,8 +36,11 @@ namespace finahback.Migrations
              new Functie() { id = 1, functienaam = "Admin", beschrijving = "Beheerder van het systeem."},
              new Functie() { id = 2, functienaam = "Onderzoeker", beschrijving = "Kan alle testen bekijken."},
              new Functie() { id = 3, functienaam = "Neuroloog", beschrijving = "Hulpverlener bij geval van hersenschade."}
+
+             
              
              );
+            context.Categories.AddOrUpdate(x=> x.id, new Categorie() {id = 1, naam = "hersenschade", beschrijving = "schade aan de hersenen"});
 
 
              

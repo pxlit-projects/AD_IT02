@@ -23,5 +23,9 @@ namespace finahback.Models
         public object Personen { get; set; }
         public System.Data.Entity.DbSet<finahback.Models.Functie> Functies  {get; set; }
         public object functies { get; set; }
+
+        public System.Data.Entity.DbSet<finahback.Models.Patient> Patients { get; set; }
+
+        public System.Data.Entity.DbSet<finahback.Models.Categorie> Categories { get; set; }
     }
 }

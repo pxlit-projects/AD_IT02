@@ -156,7 +156,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\FunctiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Controllers\PersoonsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -176,6 +179,14 @@
     <Compile Include="Migrations\201504281750043_Add-Migration.cs" />
     <Compile Include="Migrations\201504281750043_Add-Migration.Designer.cs">
       <DependentUpon>201504281750043_Add-Migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504290659351_update2.cs" />
+    <Compile Include="Migrations\201504290659351_update2.Designer.cs">
+      <DependentUpon>201504290659351_update2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504290729115_update21.cs" />
+    <Compile Include="Migrations\201504290729115_update21.Designer.cs">
+      <DependentUpon>201504290729115_update21.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categorie.cs" />
@@ -250,6 +261,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504281750043_Add-Migration.resx">
       <DependentUpon>201504281750043_Add-Migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504290659351_update2.resx">
+      <DependentUpon>201504290659351_update2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504290729115_update21.resx">
+      <DependentUpon>201504290729115_update21.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
