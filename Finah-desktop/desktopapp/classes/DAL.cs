@@ -9,6 +9,8 @@ using System.Windows;
 using System.Windows.Media.Media3D;
 using desktopapp.classes;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Text;
 
 namespace desktopapp.classes
 {
@@ -22,12 +24,12 @@ namespace desktopapp.classes
 
         }
 
-        public async void getGebruiker(string gebruikersnaam, string wachtwoord) //MOET NOG AAN GEWERKT WORDEN
+        public void getGebruiker(string gebruikersnaam, string wachtwoord) //Gebruiker opzoeken in de database
         {
             List<Persoon> model = null;
             using (var client = new HttpClient())
             {
-                // New code:
+                //Connectie:
                 client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -53,106 +55,92 @@ namespace desktopapp.classes
 
                     MessageBox.Show("Gebruikersnaam ofwachtwoord fout.");
                 }
-
-
-
-
             }
         }
 
-        public Persoon ZoekGebruiker(String gbrnaam, String wwoord)
+        public Persoon ZoekGebruiker(String gbrnaam, String wwoord) //Gebruiker terug geven uit database
         {
             getGebruiker(gbrnaam, wwoord);
             return Gebruiker;
         }
 
-        public static async void UpdateGebruiker(Persoon per)
+        public static async Task<int> UpdateGebruiker(Persoon per) //Wijzig Persoonsgegevens in database
         {
-            
             using (var client = new HttpClient())
             {
-                // New code:
+                // Connectie:
                 client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                 
-                 // Update persoon
-                 Uri url = response.Headers.Location;
-                  HttpResponseMessage  response = await client.PutAsJsonAsync(client.BaseAddress+"api/Persoons/"+per.Id, per);
-}
-               
+                Uri uri = new Uri(client.BaseAddress + "api/Patients/");
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
+                String json = JsonConvert.SerializeObject(per);
+                httpRequestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync(uri, httpRequestMessage.Content);
+                if (response.IsSuccessStatusCode)
+                {
+                    Uri gizmoUrl = response.Headers.Location;
+                }
+                return 1;
+            }
             
         }
-        /*  public void insertPatient(Patient p)
+        public async Task<int> insertPatient(Patient p) //Nieuwe patient ingeven
+        {
+
+            using (var client = new HttpClient())
             {
-                using (SqlConnection connection = new SqlConnection(ConnectionData))
+                // Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Uri uri = new Uri(client.BaseAddress + "api/Patients/");
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, uri);
+                String json = JsonConvert.SerializeObject(p);
+                httpRequestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(uri, httpRequestMessage.Content);
+                if (response.IsSuccessStatusCode)
                 {
-                    SqlTransaction transaction = null;
+                    Uri gizmoUrl = response.Headers.Location;
+                }
+                return 1;
+            }
+        }
+            public List<Categorie> getCategorie() //Categorieen opzoeken in de database
+            {
+                List<Categorie> model = null;
+                using (var client = new HttpClient())
+                {
+                    //Connectie:
+                    client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+
                     try
                     {
-                        connection.Open();
-                        command = new SqlCommand("insertPatient", connection);
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Transaction = transaction;
-                        command.Parameters.Add(new SqlParameter("@beschrijving", p.beschrijving));
-                        command.Parameters.Add(new SqlParameter("@leeftijd", p.leeftijd));
-                        command.Parameters.Add(new SqlParameter("@categorie", p.categorie));
-                        command.Parameters.Add(new SqlParameter("@mantelzorgerleeftijd", p.mantelzorgerleeftijd));
-                        command.Parameters.Add(new SqlParameter("@relatie", p.relatie));
-                        command.Parameters.Add(new SqlParameter("@hulpverlener", p.hulpverlener));
-                        command.Parameters.Add(new SqlParameter("@overig", p.overig));
-                        command.Connection = connection;
-                        command.ExecuteNonQuery();
+                        var task = client.GetAsync("api/Categories")
+               .ContinueWith((taskwithresponse) =>
+               {
+                   var response = taskwithresponse.Result;
+                   var jsonString = response.Content.ReadAsStringAsync();
+                   jsonString.Wait();
+
+                   model = JsonConvert.DeserializeObject<List<Categorie>>(jsonString.Result);
+               });
+                        task.Wait();
                     }
-                    catch (SqlException ex)
+                    catch (Exception)
                     {
-                        transaction.Rollback();
+
                     }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                    }
+                    return model;
                 }
             }
 
-            public List<Categorie> getCategorie()
-            {
-                using (SqlConnection connection = new SqlConnection(ConnectionData))
-                {
-                    SqlTransaction transaction = null;
-                    try
-                    {
-                        connection.Open();
-                        command = new SqlCommand("getCategorie", connection);
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Transaction = transaction;
-                        command.Connection = connection;
-                        SqlDataReader dr = command.ExecuteReader();
-                        List<Categorie> ListCategorie = new List<Categorie>();
-                        while (dr.Read())
-                        {
-                            int id = int.Parse(dr["Id"].ToString());
-                            string naam = dr["naam"].ToString();
-                            string beschrijving = dr["beschrijving"].ToString();
-                            ListCategorie.Add(new Categorie(id, naam, beschrijving));
-                        }
-                        return ListCategorie;
-                    }
-                    catch (SqlException ex)
-                    {
-                        transaction.Rollback();
-                        return null;
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                        return null;
-                    }
-                }
-            }
-
-            public static void insertPersoon(Persoon p)
+           /*public static void insertPersoon(Persoon p)
             {
                 using (SqlConnection connection = new SqlConnection(ConnectionData))
                 {

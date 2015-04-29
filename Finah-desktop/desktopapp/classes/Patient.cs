@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace desktopapp.classes
 {
-    class Patient
+    public class Patient
     {
         //Getters and Setters 
         public int id { get; set; }

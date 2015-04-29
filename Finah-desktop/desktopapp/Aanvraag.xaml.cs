@@ -30,7 +30,7 @@ namespace desktopapp
 
             try //combobox gegevens ophalen
             {
-  //            this.cbo_Categorie.DataContext = dal.getCategorie();
+              this.cbo_Categorie.DataContext = dal.getCategorie();
             }
             catch (Exception)
             {  
@@ -52,7 +52,7 @@ namespace desktopapp
                 p.leeftijd = (string)((ComboBoxItem)cbo_LeeftijdscatCLient.SelectedValue).Content;
                 p.mantelzorgerleeftijd = (string)((ComboBoxItem)cbo_LeeftijdscatMantel.SelectedItem).Content;
                 p.hulpverlener = 1;
- //             dal.insertPatient(p);
+                dal.insertPatient(p);
 
                 this.Close();
                 MessageBox.Show("Aanvraag is opgeslagen!", "Aanvraag", MessageBoxButton.OK, MessageBoxImage.Information);

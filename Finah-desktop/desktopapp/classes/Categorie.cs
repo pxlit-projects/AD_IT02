@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace desktopapp.classes
 {
-    class Categorie
+    public class Categorie
     {
         //Getters and Setters 
         public int id { get; set; }
