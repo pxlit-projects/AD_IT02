@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 23 mrt 2015 om 19:39
+-- Gegenereerd op: 29 apr 2015 om 08:41
 -- Serverversie: 5.6.17
 -- PHP-versie: 5.5.12
 
@@ -23,6 +23,69 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `antwoorden`
+--
+
+CREATE TABLE IF NOT EXISTS `antwoorden` (
+  `id` int(11) NOT NULL,
+  `vraag_1` varchar(200) NOT NULL,
+  `vraag_2` varchar(200) NOT NULL,
+  `vraag_3` varchar(200) NOT NULL,
+  `vraag_4` varchar(200) NOT NULL,
+  `vraag_5` varchar(200) NOT NULL,
+  `vraag_6` varchar(200) NOT NULL,
+  `vraag_7` varchar(200) NOT NULL,
+  `vraag_8` varchar(200) NOT NULL,
+  `vraag_9` varchar(200) NOT NULL,
+  `vraag_10` varchar(200) NOT NULL,
+  `vraag_11` varchar(200) NOT NULL,
+  `vraag_12` varchar(200) NOT NULL,
+  `vraag_13` varchar(200) NOT NULL,
+  `vraag_14` varchar(200) NOT NULL,
+  `vraag_15` varchar(200) NOT NULL,
+  `vraag_16` varchar(200) NOT NULL,
+  `vraag_17` varchar(200) NOT NULL,
+  `vraag_18` varchar(200) NOT NULL,
+  `vraag_19` varchar(200) NOT NULL,
+  `vraag_20` varchar(200) NOT NULL,
+  `vraag_21` varchar(200) NOT NULL,
+  `vraag_22` varchar(200) NOT NULL,
+  `vraag_23` varchar(200) NOT NULL,
+  `vraag_24` varchar(200) NOT NULL,
+  `vraag_25` varchar(200) NOT NULL,
+  `vraag_26` varchar(200) NOT NULL,
+  `vraag_27` varchar(200) NOT NULL,
+  `vraag_28` varchar(200) NOT NULL,
+  `vraag_29` varchar(200) NOT NULL,
+  `vraag_30` varchar(200) NOT NULL,
+  `vraag_31` varchar(200) NOT NULL,
+  `vraag_32` varchar(200) NOT NULL,
+  `vraag_33` varchar(200) NOT NULL,
+  `vraag_34` varchar(200) NOT NULL,
+  `vraag_35` varchar(200) NOT NULL,
+  `vraag_36` varchar(200) NOT NULL,
+  `vraag_37` varchar(200) NOT NULL,
+  `vraag_38` varchar(200) NOT NULL,
+  `vraag_39` varchar(200) NOT NULL,
+  `vraag_40` varchar(200) NOT NULL,
+  `vraag_41` varchar(200) NOT NULL,
+  `vraag_42` varchar(200) NOT NULL,
+  `vraag_43` varchar(200) NOT NULL,
+  `vraag_44` varchar(200) NOT NULL,
+  `vraag_45` varchar(200) NOT NULL,
+  `vraag_46` varchar(200) NOT NULL,
+  `vraag_47` varchar(200) NOT NULL,
+  `vraag_48` varchar(200) NOT NULL,
+  `vraag_49` varchar(200) NOT NULL,
+  `vraag_50` varchar(200) NOT NULL,
+  `vraag_51` varchar(200) NOT NULL,
+  `vraag_52` varchar(200) NOT NULL,
+  `vraag_53` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `vragenlijst`
 --
 
@@ -31,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `vragenlijst` (
   `vraag_thema` varchar(200) NOT NULL,
   `vraag` varchar(200) NOT NULL,
   PRIMARY KEY (`vraag_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=94 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `vragenlijst`
