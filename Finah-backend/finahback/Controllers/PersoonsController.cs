@@ -28,7 +28,7 @@ namespace finahback.Controllers
         [ResponseType(typeof(Persoon))]
         public async Task<IHttpActionResult> GetPersoon(String gebruikersnaam, String wachtwoord)
         {
-            IQueryable<Persoon> persoon = db.Persoons.Where(i => i.naam == gebruikersnaam && i.wachtwoord == wachtwoord);
+            IQueryable<Persoon> persoon = db.Persoons.Where(i => i.gebruikersnaam == gebruikersnaam && i.wachtwoord == wachtwoord);
             
             if (persoon == null)
             {

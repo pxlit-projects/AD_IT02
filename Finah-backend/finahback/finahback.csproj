@@ -173,6 +173,10 @@
     <Compile Include="Migrations\201504220722183_update.Designer.cs">
       <DependentUpon>201504220722183_update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504281750043_Add-Migration.cs" />
+    <Compile Include="Migrations\201504281750043_Add-Migration.Designer.cs">
+      <DependentUpon>201504281750043_Add-Migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\finahbackContext.cs" />
@@ -243,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504220722183_update.resx">
       <DependentUpon>201504220722183_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504281750043_Add-Migration.resx">
+      <DependentUpon>201504281750043_Add-Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

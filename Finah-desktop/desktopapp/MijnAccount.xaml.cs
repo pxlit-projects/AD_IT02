@@ -58,7 +58,7 @@ namespace desktopapp
                     GegevensUpdaten();
                     try
                     {
-                       //AL.insertPersoon(MainWindow.gebruiker);
+                        DAL.UpdateGebruiker(MainWindow.gebruiker);
                     }
                     catch (Exception)
                     {
@@ -97,7 +97,10 @@ namespace desktopapp
             voornaam.Text = MainWindow.gebruiker.voornaam.ToString();
             geboorte.Text = MainWindow.gebruiker.geboortejaar.ToString(CultureInfo.CurrentCulture);
             postcode.Text = MainWindow.gebruiker.postcode.ToString();
-            geslacht.Text = MainWindow.gebruiker.geslacht.ToString();
+
+            geslacht.Text = "m";
+            
+            
             straat.Text = MainWindow.gebruiker.straat.ToString();
             login.Text = MainWindow.gebruiker.gebruikersnaam.ToString();
             wachtwoord.Text = MainWindow.gebruiker.wachtwoord.ToString();
@@ -113,7 +116,7 @@ namespace desktopapp
             MainWindow.gebruiker.voornaam = voornaam.Text;
             MainWindow.gebruiker.geboortejaar = Convert.ToDateTime(geboorte.Text);
             MainWindow.gebruiker.postcode = Convert.ToInt32(postcode.Text);
-            MainWindow.gebruiker.geslacht = Convert.ToChar(geslacht.Text);
+            MainWindow.gebruiker.geslacht = Convert.ToString(geslacht.Text);
             MainWindow.gebruiker.straat = straat.Text;
             MainWindow.gebruiker.gebruikersnaam = login.Text;
             MainWindow.gebruiker.wachtwoord = wachtwoord.Text;

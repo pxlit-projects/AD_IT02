@@ -17,7 +17,7 @@ namespace finahback.Models
         public String voornaam { get; set; }
         [Column(TypeName = "DateTime2")]
         public DateTime geboortejaar { get; set; }
-        public Char geslacht { get; set; }
+        public String geslacht { get; set; }
         public String straat { get; set; }
         public int postcode { get; set; }
         public String telefoon { get; set; }
