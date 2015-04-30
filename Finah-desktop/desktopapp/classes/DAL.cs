@@ -112,7 +112,7 @@ namespace desktopapp.classes
                 return 1;
             }
         }
-            public List<Categorie> getCategorie() //Categorieen opzoeken in de database
+        public List<Categorie> getCategorie() //Categorieen opzoeken in de database
             {
                 List<Categorie> model = null;
                 using (var client = new HttpClient())
@@ -143,7 +143,89 @@ namespace desktopapp.classes
                     return model;
                 }
             }
+        public List<Persoon> getPersonen() //Categorieen opzoeken in de database
+        {
+            List<Persoon> model = null;
+            using (var client = new HttpClient())
+            {
+                //Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+
+                try
+                {
+                    var task = client.GetAsync("api/Persoons")
+           .ContinueWith((taskwithresponse) =>
+           {
+               var response = taskwithresponse.Result;
+               var jsonString = response.Content.ReadAsStringAsync();
+               jsonString.Wait();
+
+               model = JsonConvert.DeserializeObject<List<Persoon>>(jsonString.Result);
+           });
+                    task.Wait();
+                }
+                catch (Exception)
+                {
+
+                }
+                return model;
+            }
+        }
+        public List<Persoon> getPersoon(int id) //Categorieen opzoeken in de database
+        {
+            List<Persoon> model = null;
+            using (var client = new HttpClient())
+            {
+                //Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                try
+                {
+                    var task = client.GetAsync("api/Persoons/"+id)
+           .ContinueWith((taskwithresponse) =>
+           {
+               var response = taskwithresponse.Result;
+               var jsonString = response.Content.ReadAsStringAsync();
+               jsonString.Wait();
+
+               model = JsonConvert.DeserializeObject<List<Persoon>>(jsonString.Result);
+           });
+                    task.Wait();
+                }
+                catch (Exception)
+                {
+
+                }
+                return model;
+            }
+        }
+        public async Task<int> insertPersoon(Persoon p) //Nieuwe persoon ingeven
+        {
+            using (var client = new HttpClient())
+            {
+                // Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Uri uri = new Uri(client.BaseAddress + "api/Persoons/");
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, uri);
+                String json = JsonConvert.SerializeObject(p);
+                httpRequestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(uri, httpRequestMessage.Content);
+                if (response.IsSuccessStatusCode)
+                {
+                    Uri gizmoUrl = response.Headers.Location;
+                }
+                return 1;
+            }
+        }
            /*public static void insertPersoon(Persoon p)
             {
                 using (SqlConnection connection = new SqlConnection(ConnectionData))

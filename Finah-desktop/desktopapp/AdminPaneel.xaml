@@ -8,8 +8,72 @@
         <Button Content="Mijn Account" HorizontalAlignment="Left" Margin="818,26,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <Button Content="Uitloggen" HorizontalAlignment="Left" Margin="910,26,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
         <TabControl HorizontalAlignment="Left" Height="404" Margin="59,179,0,0" VerticalAlignment="Top" Width="893">
-            <TabItem Header="Gebruikers" Height="22" VerticalAlignment="Bottom">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem x:Name="tabGebruikers" Header="Gebruikers" Height="22" VerticalAlignment="Bottom">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox ItemsSource="{Binding}" x:Name="lstboxPersonen" HorizontalAlignment="Left" Height="312" Margin="69,31,0,0" VerticalAlignment="Top" Width="155" SelectionChanged="lstboxPersonen_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding voornaam}"/>
+                                    <TextBlock Text=" "/>
+                                    <TextBlock Text="{Binding naam}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <GroupBox x:Name="gb_info" Header="Info" HorizontalAlignment="Left" Margin="282,54,0,0" VerticalAlignment="Top" Height="264" Width="559">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="115" />
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="115" />
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Voornaam :" Grid.Row="0" Grid.Column="0" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Margin="0,0,160,0"/>
+                            <Label Content="Naam :" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,160,0"/>
+                            <Label Content="Geslacht :" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,160,0"/>
+                            <Label Content="Geboortejaar :" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,160,0"/>
+                            <Label Content="Straat :" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,160,0"/>
+                            <Label Content="Postcode :" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,160,0"/>
+                            <Label Content="Telefoon :" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,160,0"/>
+                            <Label Content="Gsm :" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,160,0"/>
+                            <Label Content="Functie :" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,0,160,0"/>
+                            <Label Content="bedrijf :" Grid.Row="0" Grid.Column="2" Margin="2,0,10,0"/>
+                            <Label Content="email :" Grid.Row="2" Grid.Column="2" Margin="2,0,10,0"/>
+                            <Label Content="gebruikersnaam :" Grid.Row="3" Grid.Column="2" Margin="2,0,10,0"/>
+                            <Label Content="wachtwoord :" Grid.Row="4" Grid.Column="2" Margin="2,0,10,0"/>
+                            <Label Content="geactiveerd :" Grid.Row="5" Grid.Column="2" Margin="2,0,10,0"/>
+                            <!-- Alle 'databinding' labels veranderen naar textboxen waarin je niks kan editen 
+                           Wanneer er op bewerken gedrukt wordt, zijn de textboxn editable en de knop 'bewerken' veranderd naar 'opslaan'
+                            Dan hebben we het extra forumulier 'newCompany' niet nodig-->
+                            <Label Content="{Binding voornaam}" Grid.Row="0" Grid.Column="1" Name="lblVoornaam" Margin="1,0,10,0" />
+                            <Label Content="{Binding naam}" Grid.Row="1" Grid.Column="1" Name="lblNaam" Margin="1,0,10,0"/>
+                            <Label Content="{Binding geslacht}" Grid.Row="2" Grid.Column="1" Name="lblGeslacht" Margin="1,0,10,0"/>
+                            <Label Content="{Binding geboortejaar}" Grid.Row="3" Grid.Column="1" Name="lblGeboortejaar" Margin="1,0,10,0"/>
+                            <Label Content="{Binding straat}" Grid.Row="4" Grid.Column="1" Name="lblStraat" Margin="1,0,10,0"/>
+                            <Label Content="{Binding postcode}" Grid.Row="5" Grid.Column="1" Name="lblPostcode" Margin="1,0,10,0"/>
+                            <Label Content="{Binding telefoon}" Grid.Row="6" Grid.Column="1" Name="lblTelefoon" Margin="1,0,10,0"/>
+                            <Label Content="{Binding gsm}" Grid.Row="7" Grid.Column="1" Name="lblGsm" Margin="1,0,10,0"/>
+                            <Label Content="{Binding bedrijf}" Grid.Row="0" Grid.Column="3" Name="lblBedrijf" Margin="1,0,10,0" />
+                            <Label Content="{Binding functieID}" Grid.Row="1" Grid.Column="3" Name="lblFunctie" Margin="1,0,10,0" />
+                            <Label Content="{Binding email}" Grid.Row="2" Grid.Column="3" Name="lblEmail" Margin="1,0,10,0" />
+                            <Label Content="{Binding gebruikersnaam}" Grid.Row="3" Grid.Column="3" Name="lblGebruikersnaam" Margin="1,0,10,0" />
+                            <Label Content="{Binding wachtwoord}" Grid.Row="4" Grid.Column="3" Name="lblWachtwoord" Margin="1,0,10,0" />
+                            <Label Content="{Binding geactiveerd}" Grid.Row="5" Grid.Column="3" Name="lblGeactiveerd" Margin="1,0,10,0" />
+                        </Grid>
+                    </GroupBox>
+                    <Button x:Name="btnNieuwGebruiker" Content="Nieuw" HorizontalAlignment="Left" Margin="282,328,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Functies">
                 <Grid Background="#FFE5E5E5"/>

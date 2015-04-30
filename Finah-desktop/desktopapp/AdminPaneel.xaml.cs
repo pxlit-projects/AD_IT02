@@ -1,4 +1,5 @@
-﻿using System;
+﻿using desktopapp.classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,19 @@ namespace desktopapp
     /// </summary>
     public partial class AdminPaneel : Window
     {
+        private DAL dal = new DAL();
+
         public AdminPaneel()
         {
             InitializeComponent();
+            try //Listbox gegevens ophalen
+            {
+                this.tabGebruikers.DataContext = dal.getPersonen();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -35,6 +46,24 @@ namespace desktopapp
             MainWindow main = new MainWindow();
             main.Show();
             Close();
+        }
+        private void lstboxPersonen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Persoon persoon = (Persoon)lstboxPersonen.SelectedItem;
+            this.gb_info.DataContext = dal.getPersoon(persoon.Id);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                NieuweGebruiker nieuweGebruiker = new NieuweGebruiker();
+                nieuweGebruiker.ShowDialog();
+            }
+            catch (Exception)
+            {
+                
+            }
         }
     }
 }
