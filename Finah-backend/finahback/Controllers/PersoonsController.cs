@@ -38,6 +38,19 @@ namespace finahback.Controllers
             return Ok(persoon);
         }
 
+        // GET: api/Patients/5
+        [ResponseType(typeof(Patient))]
+        public async Task<IHttpActionResult> GetPatient(int id)
+        {
+            Persoon persoon = await db.Persoons.FindAsync(id);
+            if (persoon == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(persoon);
+        }
+
         // PUT: api/Persoons/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutPersoon(int id, Persoon persoon)
