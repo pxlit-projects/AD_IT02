@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace desktopapp
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for NieuweGebruiker.xaml
     /// </summary>
     public partial class NieuweGebruiker : Window
     {
@@ -24,11 +24,15 @@ namespace desktopapp
 
         public NieuweGebruiker()
         {
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
+            InitializeComponent();
+            try //combobox gegevens ophalen
+            {
+                this.cbo_Functie.DataContext = dal.getFunctie();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -39,18 +43,19 @@ namespace desktopapp
 
                 p.voornaam = txtvoornaam.Text;
                 p.naam = txtnaam.Text;
-                //p.geboortejaar = txtgeboorte.Text;
+                p.geboortejaar = Convert.ToDateTime(txtgeboorte.Text);
                 p.straat = txtstraat.Text;
-                //p.postcode = txtstraat.Text;
+                p.postcode = Convert.ToInt32(txtpostcode.Text);
                 p.telefoon = txttelefoon.Text;
                 p.gsm = txtgsm.Text;
-                //p.functieID = txtfunctie.Text;
+                Functie functie = (Functie)cbo_Functie.SelectedItem;
+                p.functieID = functie.id;
                 p.bedrijf = txtbedrijf.Text;
                 p.email = txtemail.Text;
                 p.gebruikersnaam = txtlogin.Text;
                 p.wachtwoord = txtwachtwoord.Text;
                 p.geslacht = txtgeslacht.Text;
-                //p.geactiveerd = txtgeactiveerd.Text;
+                p.geactiveerd = Convert.ToBoolean(cb_geactiveerd.IsChecked);
 
                 dal.insertPersoon(p);
                 this.Close();
@@ -60,6 +65,11 @@ namespace desktopapp
             {
                 throw;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

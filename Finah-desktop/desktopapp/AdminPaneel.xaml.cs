@@ -21,6 +21,7 @@ namespace desktopapp
     public partial class AdminPaneel : Window
     {
         private DAL dal = new DAL();
+        public static Persoon persoon;
 
         public AdminPaneel()
         {
@@ -49,7 +50,7 @@ namespace desktopapp
         }
         private void lstboxPersonen_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Persoon persoon = (Persoon)lstboxPersonen.SelectedItem;
+            persoon = (Persoon)lstboxPersonen.SelectedItem;
             this.gb_info.DataContext = dal.getPersoon(persoon.Id);
         }
 
@@ -57,13 +58,36 @@ namespace desktopapp
         {
             try
             {
-                NieuweGebruiker nieuweGebruiker = new NieuweGebruiker();
-                nieuweGebruiker.ShowDialog();
+                NieuweGebruiker nieuwegebruiker = new NieuweGebruiker();
+                nieuwegebruiker.ShowDialog();
             }
             catch (Exception)
             {
                 
             }
+        }
+
+        private void btnBewerk_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                BewerkGebruiker bewerkgebruiker = new BewerkGebruiker();
+                bewerkgebruiker.ShowDialog();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void btnVerwijder_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Bent u zeker dat u "+persoon.voornaam+" "+persoon.naam+" wilt verwijderen?", "Persoon verwijderen",MessageBoxButton.YesNo,MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                dal.deletePersoon(persoon.Id);
+                MessageBox.Show("Verwijderen gelukt!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
         }
     }
 }

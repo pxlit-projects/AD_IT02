@@ -226,6 +226,59 @@ namespace desktopapp.classes
                 return 1;
             }
         }
+        public List<Functie> getFunctie() //Categorieen opzoeken in de database
+        {
+            List<Functie> model = null;
+            using (var client = new HttpClient())
+            {
+                //Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                try
+                {
+                    var task = client.GetAsync("api/Functies")
+           .ContinueWith((taskwithresponse) =>
+           {
+               var response = taskwithresponse.Result;
+               var jsonString = response.Content.ReadAsStringAsync();
+               jsonString.Wait();
+
+               model = JsonConvert.DeserializeObject<List<Functie>>(jsonString.Result);
+           });
+                    task.Wait();
+                }
+                catch (Exception)
+                {
+
+                }
+                return model;
+            }
+        }
+        public async Task<int> deletePersoon(int id) //Nieuwe persoon ingeven
+        {
+            using (var client = new HttpClient())
+            {
+                // Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Uri uri = new Uri(client.BaseAddress + "api/Persoons/" + id);
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
+
+                var response = await client.DeleteAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    Uri gizmoUrl = response.Headers.Location;
+                }
+
+            }
+
+            return 1;
+        }
            /*public static void insertPersoon(Persoon p)
             {
                 using (SqlConnection connection = new SqlConnection(ConnectionData))

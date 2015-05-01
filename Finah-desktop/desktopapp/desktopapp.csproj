@@ -81,14 +81,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="NieuweGebruiker.xaml.cs">
-      <DependentUpon>NieuweGebruiker.xaml</DependentUpon>
-    </Compile>
     <Page Include="Aanvraag.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AdminPaneel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BewerkGebruiker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -110,6 +111,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BewerkGebruiker.xaml.cs">
+      <DependentUpon>BewerkGebruiker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="classes\Categorie.cs" />
     <Compile Include="classes\Functie.cs" />
     <Compile Include="classes\Gemeente.cs" />
@@ -127,11 +131,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Onderzoeker.xaml">
+    <Page Include="NieuweGebruiker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NieuweGebruiker.xaml">
+    <Page Include="Onderzoeker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,6 +143,9 @@
   <ItemGroup>
     <Compile Include="MijnAccount.xaml.cs">
       <DependentUpon>MijnAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NieuweGebruiker.xaml.cs">
+      <DependentUpon>NieuweGebruiker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Onderzoeker.xaml.cs">
       <DependentUpon>Onderzoeker.xaml</DependentUpon>

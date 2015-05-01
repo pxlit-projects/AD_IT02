@@ -9,12 +9,14 @@ namespace desktopapp.classes
     public class Functie
     {
         //Getters and Setters 
-        public String functienaam { get; set; }
-        public String beschrijving { get; set; }
+        public int id { get; set; }
+        public string functienaam { get; set; }
+        public string beschrijving { get; set; }
 
         //Constructors
-        public Functie(String functienaam, String beschrijving)
+        public Functie(int id, string functienaam, string beschrijving)
         {
+            this.id = id;
             this.functienaam = functienaam;
             this.beschrijving = beschrijving;
         }
