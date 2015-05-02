@@ -22,18 +22,21 @@ namespace desktopapp
     {
         private DAL dal = new DAL();
         public static Persoon persoon;
+        public static Functie functie;
 
         public AdminPaneel()
         {
             InitializeComponent();
-            try //Listbox gegevens ophalen
+            try
             {
+                this.tabFuncties.DataContext = dal.getFunctie();
                 this.tabGebruikers.DataContext = dal.getPersonen();
+                this.tabCategories.DataContext = dal.getCategorie();
             }
             catch (Exception)
             {
-                throw;
             }
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -58,7 +61,7 @@ namespace desktopapp
         {
             try
             {
-                NieuweGebruiker nieuwegebruiker = new NieuweGebruiker();
+                NieuweFunctie nieuwegebruiker = new NieuweFunctie();
                 nieuwegebruiker.ShowDialog();
             }
             catch (Exception)
@@ -88,6 +91,45 @@ namespace desktopapp
                 MessageBox.Show("Verwijderen gelukt!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
+        }
+
+        private void cbo_functienaam_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            functie = (Functie)cbo_functienaam.SelectedItem;
+            this.lblbeschrijving.DataContext = dal.getFunctie(functie.id);
+        }
+
+        private void cbo_categorienaam_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Categorie categorie = (Categorie)cbo_categorienaam.SelectedItem;
+            this.lblbeschrijvingCategorie.DataContext = dal.getCategorie(categorie.id);
+        }
+
+        private void btnNieuwFunctie_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                NieuweFunctie nieuweFunctie = new NieuweFunctie();
+                nieuweFunctie.ShowDialog();
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+
+        private void btnBewerkFunctie_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                BewerkFunctie bewerkfunctie = new BewerkFunctie();
+                bewerkfunctie.ShowDialog();
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }

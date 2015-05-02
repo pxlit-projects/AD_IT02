@@ -77,8 +77,33 @@
                     <Button x:Name="btnVerwijder" Content="Verwijder" HorizontalAlignment="Left" Margin="471,328,0,0" VerticalAlignment="Top" Width="75" Click="btnVerwijder_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Functies">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem x:Name="tabFuncties" Header="Functies">
+                <Grid Background="#FFE5E5E5">
+                    <ComboBox ItemsSource="{Binding}" x:Name="cbo_functienaam" HorizontalAlignment="Left" Margin="107,40,0,0" VerticalAlignment="Top" Width="153" SelectedIndex="0" SelectionChanged="cbo_functienaam_SelectionChanged">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding functienaam}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Label Content="Functie:" HorizontalAlignment="Left" Margin="51,36,0,0" VerticalAlignment="Top"/>
+                    <Label Content="{Binding beschrijving}" x:Name="lblbeschrijving" HorizontalAlignment="Left" Margin="107,67,0,0" VerticalAlignment="Top" Height="235" Width="659"/>
+                    <Button x:Name="btnNieuwFunctie" Content="Nieuw" HorizontalAlignment="Left" Margin="112,320,0,0" VerticalAlignment="Top" Width="75" Click="btnNieuwFunctie_Click"/>
+                    <Button  x:Name="btnBewerkFunctie" Content="Bewerk" HorizontalAlignment="Left" Margin="208,320,0,0" VerticalAlignment="Top" Width="75" Click="btnBewerkFunctie_Click" />
+                    <Button x:Name="btnVerwijderFunctie" Content="Verwijder" HorizontalAlignment="Left" Margin="301,320,0,0" VerticalAlignment="Top" Width="75"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabCategories" Header="Categories">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Categorie:" HorizontalAlignment="Left" Margin="38,36,0,0" VerticalAlignment="Top"/>
+                    <Label Content="{Binding beschrijving}" x:Name="lblbeschrijvingCategorie" HorizontalAlignment="Left" Margin="107,67,0,0" VerticalAlignment="Top" Height="237" Width="659"/>
+                    <ComboBox x:Name="cbo_categorienaam" HorizontalAlignment="Left" Margin="107,40,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="cbo_categorienaam_SelectionChanged"/>
+                    <Button x:Name="btnNieuwCategorie" Content="Nieuw" HorizontalAlignment="Left" Margin="108,324,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button  x:Name="btnBewerkCategorie" Content="Bewerk" HorizontalAlignment="Left" Margin="204,324,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button x:Name="btnVerwijderCategorie" Content="Verwijder" HorizontalAlignment="Left" Margin="297,324,0,0" VerticalAlignment="Top" Width="75"/>
+                </Grid>
             </TabItem>
         </TabControl>
 

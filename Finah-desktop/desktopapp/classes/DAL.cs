@@ -226,7 +226,7 @@ namespace desktopapp.classes
                 return 1;
             }
         }
-        public List<Functie> getFunctie() //Categorieen opzoeken in de database
+        public List<Functie> getFunctie() //Functies opzoeken in de database
         {
             List<Functie> model = null;
             using (var client = new HttpClient())
@@ -279,45 +279,85 @@ namespace desktopapp.classes
 
             return 1;
         }
-           /*public static void insertPersoon(Persoon p)
+        public List<Functie> getFunctie(int id) //Categorieen opzoeken in de database
+        {
+            List<Functie> model = null;
+            using (var client = new HttpClient())
             {
-                using (SqlConnection connection = new SqlConnection(ConnectionData))
+                //Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
                 {
-                    SqlTransaction transaction = null;
-                    try
-                    {
-                        connection.Open();
-                        command = new SqlCommand("insertPersoon", connection);
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Transaction = transaction;
-                        command.Parameters.Add(new SqlParameter("@naam", p.naam));
-                        command.Parameters.Add(new SqlParameter("@voornaam", p.voornaam));
-                        command.Parameters.Add(new SqlParameter("@geboortejaar", p.geboortejaar));
-                        command.Parameters.Add(new SqlParameter("@geslacht", p.geslacht));
-                        command.Parameters.Add(new SqlParameter("@straat", p.straat));
-                        command.Parameters.Add(new SqlParameter("@postcode", p.postcode));
-                        command.Parameters.Add(new SqlParameter("@gsm", p.gsm));
-                        command.Parameters.Add(new SqlParameter("@bedrijf", p.bedrijf));
-                        command.Parameters.Add(new SqlParameter("@gebruikersnaam", p.gebruikersnaam));
-                        command.Parameters.Add(new SqlParameter("@wachtwoord", p.wachtwoord));
-                        command.Parameters.Add(new SqlParameter("@telefoon", p.telefoon));
-                        command.Parameters.Add(new SqlParameter("@email", p.email));
-                        command.Parameters.Add(new SqlParameter("@id", p.Id));
+                    var task = client.GetAsync("api/Functies/" + id)
+           .ContinueWith((taskwithresponse) =>
+           {
+               var response = taskwithresponse.Result;
+               var jsonString = response.Content.ReadAsStringAsync();
+               jsonString.Wait();
 
-                    
-                        command.Connection = connection;
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SqlException ex)
-                    {
-                        transaction.Rollback();
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                    }
+               model = JsonConvert.DeserializeObject<List<Functie>>(jsonString.Result);
+           });
+                    task.Wait();
                 }
-            } */
+                catch (Exception)
+                {
 
+                }
+                return model;
+            }
+        }
+        public List<Categorie> getCategorie(int id) //Categorieen opzoeken in de database
+        {
+            List<Categorie> model = null;
+            using (var client = new HttpClient())
+            {
+                //Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    var task = client.GetAsync("api/Categories/" + id)
+           .ContinueWith((taskwithresponse) =>
+           {
+               var response = taskwithresponse.Result;
+               var jsonString = response.Content.ReadAsStringAsync();
+               jsonString.Wait();
+
+               model = JsonConvert.DeserializeObject<List<Categorie>>(jsonString.Result);
+           });
+                    task.Wait();
+                }
+                catch (Exception)
+                {
+
+                }
+                return model;
+            }
+        }
+        public async Task<int> insertFunctie(Functie f) //Nieuwe persoon ingeven
+        {
+            using (var client = new HttpClient())
+            {
+                // Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Uri uri = new Uri(client.BaseAddress + "api/Functies/");
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, uri);
+                String json = JsonConvert.SerializeObject(f);
+                httpRequestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(uri, httpRequestMessage.Content);
+                if (response.IsSuccessStatusCode)
+                {
+                    Uri gizmoUrl = response.Headers.Location;
+                }
+                return 1;
+            }
+        }
+          
     }
 }
