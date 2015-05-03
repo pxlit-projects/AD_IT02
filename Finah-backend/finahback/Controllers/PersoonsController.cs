@@ -39,10 +39,11 @@ namespace finahback.Controllers
         }
 
         // GET: api/Patients/5
-        [ResponseType(typeof(Patient))]
-        public async Task<IHttpActionResult> GetPatient(int id)
+        [ResponseType(typeof(Persoon))]
+        public async Task<IHttpActionResult> GetPersoon(int id)
         {
-            Persoon persoon = await db.Persoons.FindAsync(id);
+            IQueryable<Persoon> persoon = db.Persoons.Where(i => i.Id == id);
+
             if (persoon == null)
             {
                 return NotFound();

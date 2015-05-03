@@ -27,13 +27,14 @@ namespace finahback.Controllers
         [ResponseType(typeof(Functie))]
         public async Task<IHttpActionResult> GetFunctie(int id)
         {
-            Functie functie = await db.Functies.FindAsync(id);
-            if (functie == null)
+            IQueryable<Functie> functies = db.Functies.Where(i => i.id == id);
+
+            if (functies == null)
             {
                 return NotFound();
             }
 
-            return Ok(functie);
+            return Ok(functies);
         }
 
         // PUT: api/Functies/5

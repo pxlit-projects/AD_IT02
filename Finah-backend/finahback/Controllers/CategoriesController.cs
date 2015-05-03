@@ -25,9 +25,10 @@ namespace finahback.Controllers
 
         // GET: api/Categories/5
         [ResponseType(typeof(Categorie))]
-        public async Task<IHttpActionResult> GetCategorie(int id)
+        public async Task<IHttpActionResult> GetPersoon(int id)
         {
-            Categorie categorie = await db.Categories.FindAsync(id);
+            IQueryable<Categorie> categorie = db.Categories.Where(i => i.id == id);
+
             if (categorie == null)
             {
                 return NotFound();
