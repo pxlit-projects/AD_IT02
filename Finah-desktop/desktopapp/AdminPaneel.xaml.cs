@@ -23,6 +23,7 @@ namespace desktopapp
         private DAL dal = new DAL();
         public static Persoon persoon;
         public static Functie functie;
+        public static Categorie categorie;
 
         public AdminPaneel()
         {
@@ -101,7 +102,7 @@ namespace desktopapp
 
         private void cbo_categorienaam_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Categorie categorie = (Categorie)cbo_categorienaam.SelectedItem;
+            categorie = (Categorie)cbo_categorienaam.SelectedItem;
             this.lblbeschrijvingCategorie.DataContext = dal.getCategorie(categorie.id);
         }
 
@@ -129,6 +130,51 @@ namespace desktopapp
             catch (Exception)
             {
 
+            }
+        }
+
+        private void btnVerwijderFunctie_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Bent u zeker dat u de functie  " + functie.functienaam + " wilt verwijderen?", "Functie verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                dal.deleteFunctie(functie.id);
+                MessageBox.Show("Verwijderen gelukt!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void btnNieuwCategorie_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                NieuweCategorie nieuwecategorie = new NieuweCategorie();
+                nieuwecategorie.ShowDialog();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void btnBewerkCategorie_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                BewerkCategorie bewerkcategorie = new BewerkCategorie();
+                bewerkcategorie.ShowDialog();
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+
+        private void btnVerwijderCategorie_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Bent u zeker dat u de categorie  " + categorie.naam + " wilt verwijderen?", "Categorie verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                dal.deleteCategorie(categorie.id);
+                MessageBox.Show("Verwijderen gelukt!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }

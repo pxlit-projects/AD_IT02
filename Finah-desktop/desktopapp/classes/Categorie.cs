@@ -14,6 +14,10 @@ namespace desktopapp.classes
         public string beschrijving { get; set; }
 
         //Constructors
+        public Categorie()
+        {
+
+        }
         public Categorie(int id, string naam, string beschrijving)
         {
             this.id = id;

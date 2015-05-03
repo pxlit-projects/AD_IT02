@@ -16,22 +16,40 @@ using System.Windows.Shapes;
 namespace desktopapp
 {
     /// <summary>
-    /// Interaction logic for BewerkFunctie.xaml
+    /// Interaction logic for BewerkCategorie.xaml
     /// </summary>
-    public partial class BewerkFunctie : Window
+    public partial class BewerkCategorie : Window
     {
         DAL dal = new DAL();
-
-        public BewerkFunctie()
+        public BewerkCategorie()
         {
             InitializeComponent();
             try
             {
-                txtfunctie.Text = AdminPaneel.functie.functienaam;
-                txtbeschrijving.Text = AdminPaneel.functie.beschrijving;
+                txtcategorie.Text = AdminPaneel.categorie.naam;
+                txtbeschrijving.Text = AdminPaneel.categorie.beschrijving;
             }
             catch (Exception)
             {
+                throw;
+            }
+        }
+
+        private void btnBevestig_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                AdminPaneel.categorie.naam = txtcategorie.Text;
+                AdminPaneel.categorie.beschrijving = txtbeschrijving.Text;
+
+                DAL.UpdateCategorie(AdminPaneel.categorie);
+
+                this.Close();
+                MessageBox.Show("De categorie is opgeslagen!", "Nieuwe categorie", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }
@@ -39,25 +57,6 @@ namespace desktopapp
         private void btnAnnuleer_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void btnBevestig_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                AdminPaneel.functie.functienaam = txtfunctie.Text;
-                AdminPaneel.functie.beschrijving = txtbeschrijving.Text;
-
-                DAL.UpdateFunctie(AdminPaneel.functie);
-
-                this.Close();
-                MessageBox.Show("De functie is opgeslagen!", "Nieuwe functie", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (Exception)
-            {
-                
-                throw;
-            }
         }
     }
 }

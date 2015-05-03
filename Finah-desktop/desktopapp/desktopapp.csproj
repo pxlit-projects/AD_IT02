@@ -89,6 +89,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BewerkCategorie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BewerkFunctie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,6 +119,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BewerkCategorie.xaml.cs">
+      <DependentUpon>BewerkCategorie.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BewerkFunctie.xaml.cs">
       <DependentUpon>BewerkFunctie.xaml</DependentUpon>
     </Compile>
@@ -138,6 +145,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NieuweCategorie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NieuweFunctie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -154,6 +165,9 @@
   <ItemGroup>
     <Compile Include="MijnAccount.xaml.cs">
       <DependentUpon>MijnAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NieuweCategorie.xaml.cs">
+      <DependentUpon>NieuweCategorie.xaml</DependentUpon>
     </Compile>
     <Compile Include="NieuweFunctie.xaml.cs">
       <DependentUpon>NieuweFunctie.xaml</DependentUpon>

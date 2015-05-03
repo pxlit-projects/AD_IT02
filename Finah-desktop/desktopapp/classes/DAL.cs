@@ -358,6 +358,123 @@ namespace desktopapp.classes
                 return 1;
             }
         }
+        public static async Task<int> UpdateFunctie(Functie f) //Wijzig Persoonsgegevens in database
+        {
+
+
+            using (var client = new HttpClient())
+            {
+                // Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Uri uri = new Uri(client.BaseAddress + "api/Functies/" + f.id);
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
+                String json = JsonConvert.SerializeObject(f);
+                httpRequestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync(uri, httpRequestMessage.Content);
+                if (response.IsSuccessStatusCode)
+                {
+                    Uri gizmoUrl = response.Headers.Location;
+                }
+
+            }
+
+            return 1;
+
+        }
+        public async Task<int> deleteFunctie(int id) //Nieuwe persoon ingeven
+        {
+            using (var client = new HttpClient())
+            {
+                // Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Uri uri = new Uri(client.BaseAddress + "api/Functies/" + id);
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
+
+                var response = await client.DeleteAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    Uri gizmoUrl = response.Headers.Location;
+                }
+
+            }
+
+            return 1;
+        }
+        public async Task<int> insertCategorie(Categorie cat) //Nieuwe persoon ingeven
+        {
+            using (var client = new HttpClient())
+            {
+                // Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Uri uri = new Uri(client.BaseAddress + "api/Categories/");
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, uri);
+                String json = JsonConvert.SerializeObject(cat);
+                httpRequestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(uri, httpRequestMessage.Content);
+                if (response.IsSuccessStatusCode)
+                {
+                    Uri gizmoUrl = response.Headers.Location;
+                }
+                return 1;
+            }
+        }
+        public static async Task<int> UpdateCategorie(Categorie cat) //Wijzig Persoonsgegevens in database
+        {
+
+
+            using (var client = new HttpClient())
+            {
+                // Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Uri uri = new Uri(client.BaseAddress + "api/Categories/" + cat.id);
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
+                String json = JsonConvert.SerializeObject(cat);
+                httpRequestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync(uri, httpRequestMessage.Content);
+                if (response.IsSuccessStatusCode)
+                {
+                    Uri gizmoUrl = response.Headers.Location;
+                }
+
+            }
+
+            return 1;
+
+        }
+        public async Task<int> deleteCategorie(int id) //Nieuwe persoon ingeven
+        {
+            using (var client = new HttpClient())
+            {
+                // Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Uri uri = new Uri(client.BaseAddress + "api/Categories/" + id);
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
+
+                var response = await client.DeleteAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    Uri gizmoUrl = response.Headers.Location;
+                }
+
+            }
+
+            return 1;
+        }
           
     }
 }
