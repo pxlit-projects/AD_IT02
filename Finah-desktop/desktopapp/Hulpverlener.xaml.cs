@@ -21,7 +21,6 @@ namespace desktopapp
     public partial class hulpverlener : Window
     {
         DAL dal = new DAL();
-        PatientResultaten patientresultaten;
 
         public hulpverlener()
         {

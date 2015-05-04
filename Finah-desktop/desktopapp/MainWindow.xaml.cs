@@ -64,7 +64,7 @@ namespace desktopapp
                         admin.Show();
                         break;
                     case 2:
-                        hulpverlener onderzoeker = new hulpverlener();
+                        onderzoeker onderzoeker = new onderzoeker();
                         onderzoeker.Show();
                         break;
                     default:
