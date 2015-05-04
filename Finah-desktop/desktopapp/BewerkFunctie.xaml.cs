@@ -52,6 +52,7 @@ namespace desktopapp
 
                 this.Close();
                 MessageBox.Show("De functie is opgeslagen!", "Nieuwe functie", MessageBoxButton.OK, MessageBoxImage.Information);
+
             }
             catch (Exception)
             {

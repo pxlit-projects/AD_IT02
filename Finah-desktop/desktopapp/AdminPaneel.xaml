@@ -1,7 +1,7 @@
 ﻿<Window x:Class="desktopapp.AdminPaneel"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Administrator Paneel" Height="666.406" Width="1015.675" WindowStartupLocation="CenterScreen">
+        Title="Administrator Paneel" Height="666.406" Width="1015.675" Activated="Window_Activated" WindowStartupLocation="CenterScreen">
     <Grid Background="#48a9e4">
         <Image HorizontalAlignment="Left" Height="100" Margin="35,26,0,0" VerticalAlignment="Top" Width="100" Source="images/logo.png"/>
         <Label Content="Finah" HorizontalAlignment="Left" Margin="140,59,0,0" VerticalAlignment="Top" FontSize="30" Foreground="White"/>

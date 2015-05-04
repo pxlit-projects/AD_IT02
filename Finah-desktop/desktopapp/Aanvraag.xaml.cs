@@ -38,7 +38,7 @@ namespace desktopapp
             }
         }
 
-        private void btnVerzendAanvraag_Click(object sender, RoutedEventArgs e)
+        private async void btnVerzendAanvraag_Click(object sender, RoutedEventArgs e)
         {
             try //gegevens opslaan in de database
             {
@@ -51,8 +51,25 @@ namespace desktopapp
                 p.overig = txtOverig.Text;
                 p.leeftijd = (string)((ComboBoxItem)cbo_LeeftijdscatCLient.SelectedValue).Content;
                 p.mantelzorgerleeftijd = (string)((ComboBoxItem)cbo_LeeftijdscatMantel.SelectedItem).Content;
-                p.hulpverlener = 1;
-                dal.insertPatient(p);
+                p.hulpverlener = MainWindow.gebruiker.Id;
+
+                await dal.insertPatient(p);
+                
+
+                List<Patient> patienten = dal.getPatienten();
+                foreach (Patient patient in patienten)
+                {
+                    if (patient.beschrijving.Equals(p.beschrijving))
+                    {
+                        p.id = patient.id;
+                    }
+                }
+
+                Overzicht overzicht = new Overzicht();
+                overzicht.hulpverlenerID = MainWindow.gebruiker.Id;
+                overzicht.patientID = p.id;
+                overzicht.tijdstip = DateTime.Now;
+                dal.insertOverzicht(overzicht);
 
                 this.Close();
                 MessageBox.Show("Aanvraag is opgeslagen!", "Aanvraag", MessageBoxButton.OK, MessageBoxImage.Information);

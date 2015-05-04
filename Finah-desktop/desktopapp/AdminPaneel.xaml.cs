@@ -28,6 +28,9 @@ namespace desktopapp
         public AdminPaneel()
         {
             InitializeComponent();
+        }
+        private void Window_Activated(object sender, System.EventArgs e)
+        {
             try
             {
                 this.tabFuncties.DataContext = dal.getFunctie();
@@ -37,8 +40,8 @@ namespace desktopapp
             catch (Exception)
             {
             }
-            
         }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -86,12 +89,8 @@ namespace desktopapp
 
         private void btnVerwijder_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Bent u zeker dat u "+persoon.voornaam+" "+persoon.naam+" wilt verwijderen?", "Persoon verwijderen",MessageBoxButton.YesNo,MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            {
                 dal.deletePersoon(persoon.Id);
                 MessageBox.Show("Verwijderen gelukt!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-
         }
 
         private void cbo_functienaam_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -135,11 +134,9 @@ namespace desktopapp
 
         private void btnVerwijderFunctie_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Bent u zeker dat u de functie  " + functie.functienaam + " wilt verwijderen?", "Functie verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            {
-                dal.deleteFunctie(functie.id);
-                MessageBox.Show("Verwijderen gelukt!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+
+               dal.deleteFunctie(functie.id);
+               MessageBox.Show("Verwijderen gelukt!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void btnNieuwCategorie_Click(object sender, RoutedEventArgs e)
@@ -171,11 +168,8 @@ namespace desktopapp
 
         private void btnVerwijderCategorie_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Bent u zeker dat u de categorie  " + categorie.naam + " wilt verwijderen?", "Categorie verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            {
                 dal.deleteCategorie(categorie.id);
                 MessageBox.Show("Verwijderen gelukt!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
         }
     }
 }

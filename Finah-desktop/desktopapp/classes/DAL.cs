@@ -475,6 +475,90 @@ namespace desktopapp.classes
 
             return 1;
         }
+        public async Task<int> insertOverzicht(Overzicht overzicht) //Nieuwe patient ingeven
+        {
+
+            using (var client = new HttpClient())
+            {
+                // Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Uri uri = new Uri(client.BaseAddress + "api/Overzicht/");
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, uri);
+                String json = JsonConvert.SerializeObject(overzicht);
+                httpRequestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(uri, httpRequestMessage.Content);
+                if (response.IsSuccessStatusCode)
+                {
+                    Uri gizmoUrl = response.Headers.Location;
+                }
+                return 1;
+            }
+        }
+        public List<Overzicht> getOverzicht() //Functies opzoeken in de database
+        {
+            List<Overzicht> model = null;
+            using (var client = new HttpClient())
+            {
+                //Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                try
+                {
+                    var task = client.GetAsync("api/Overzicht")
+           .ContinueWith((taskwithresponse) =>
+           {
+               var response = taskwithresponse.Result;
+               var jsonString = response.Content.ReadAsStringAsync();
+               jsonString.Wait();
+
+               model = JsonConvert.DeserializeObject<List<Overzicht>>(jsonString.Result);
+           });
+                    task.Wait();
+                }
+                catch (Exception)
+                {
+
+                }
+                return model;
+            }
+        }
+        public List<Patient> getPatienten() //Functies opzoeken in de database
+        {
+            List<Patient> model = null;
+            using (var client = new HttpClient())
+            {
+                //Connectie:
+                client.BaseAddress = new Uri("http://finahback.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                try
+                {
+                    var task = client.GetAsync("api/Patients")
+           .ContinueWith((taskwithresponse) =>
+           {
+               var response = taskwithresponse.Result;
+               var jsonString = response.Content.ReadAsStringAsync();
+               jsonString.Wait();
+
+               model = JsonConvert.DeserializeObject<List<Patient>>(jsonString.Result);
+           });
+                    task.Wait();
+                }
+                catch (Exception)
+                {
+
+                }
+                return model;
+            }
+        }
           
     }
 }

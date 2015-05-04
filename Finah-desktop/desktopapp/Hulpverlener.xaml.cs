@@ -1,4 +1,5 @@
-﻿using System;
+﻿using desktopapp.classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +20,24 @@ namespace desktopapp
     /// </summary>
     public partial class hulpverlener : Window
     {
+        DAL dal = new DAL();
+        PatientResultaten patientresultaten;
+
         public hulpverlener()
         {
             InitializeComponent();
             txtwelkom.Content = MainWindow.gebruiker.gebruikersnaam.ToString();
+        }
+
+        private void Window_Activated(object sender, System.EventArgs e)
+        {
+            try
+            {
+                this.dg_OverzichtOnderzoeker.DataContext = dal.getOverzicht();
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
