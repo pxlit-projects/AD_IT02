@@ -189,6 +189,10 @@
     <Compile Include="Migrations\201504290729115_update21.Designer.cs">
       <DependentUpon>201504290729115_update21.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505041452565_update22.cs" />
+    <Compile Include="Migrations\201505041452565_update22.Designer.cs">
+      <DependentUpon>201505041452565_update22.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\finahbackContext.cs" />
@@ -269,6 +273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504290729115_update21.resx">
       <DependentUpon>201504290729115_update21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505041452565_update22.resx">
+      <DependentUpon>201505041452565_update22.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
