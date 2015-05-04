@@ -159,6 +159,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\FunctiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OverzichtController.cs" />
     <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Controllers\PersoonsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -193,6 +194,7 @@
     <Compile Include="Models\finahbackContext.cs" />
     <Compile Include="Models\Functie.cs" />
     <Compile Include="Models\Gemeente.cs" />
+    <Compile Include="Models\Overzicht.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Persoon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -290,7 +292,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>13437</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

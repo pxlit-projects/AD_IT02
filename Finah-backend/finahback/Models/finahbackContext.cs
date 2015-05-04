@@ -27,5 +27,7 @@ namespace finahback.Models
         public System.Data.Entity.DbSet<finahback.Models.Patient> Patients { get; set; }
 
         public System.Data.Entity.DbSet<finahback.Models.Categorie> Categories { get; set; }
+
+        public System.Data.Entity.DbSet<finahback.Models.Overzicht> Overzichts { get; set; }
     }
 }
