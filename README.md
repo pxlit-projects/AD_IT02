@@ -16,4 +16,11 @@ Kennith Metten
     * Compatibility testing
 
 ### Instructies
-geen
+exe file als Administrator uitvoeren (voor de logging/foutafhandeling schrijfrechten te geven naar de C schijf)
+Inloggen gaat met de volgende gebruikers (voor de verschillende windows te kunnen zien)
+1. gebruikersnaam: admin
+   wachtwoord: Test123
+2. gebruikersnaam: onderzoeker
+   wachtwoord: Test123
+3. gebruikersnaam: neuroloog
+   wachtwoord: Test123
