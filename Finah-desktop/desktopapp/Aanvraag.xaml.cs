@@ -23,6 +23,7 @@ namespace desktopapp
     public partial class Aanvraag : Window
     {
         private DAL dal = new DAL();
+        private Logger logger = new Logger();
 
         public Aanvraag()
         {
@@ -32,9 +33,9 @@ namespace desktopapp
             {
               this.cbo_Categorie.DataContext = dal.getCategorie();
             }
-            catch (Exception)
-            {  
-                throw;
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
             }
         }
 
@@ -53,9 +54,8 @@ namespace desktopapp
                 p.mantelzorgerleeftijd = (string)((ComboBoxItem)cbo_LeeftijdscatMantel.SelectedItem).Content;
                 p.hulpverlener = MainWindow.gebruiker.Id;
 
-                await dal.insertPatient(p);
+                await dal.insertPatient(p); //wachten tot de functie is uitgevoerd
                 
-
                 List<Patient> patienten = dal.getPatienten();
                 foreach (Patient patient in patienten)
                 {
@@ -69,14 +69,14 @@ namespace desktopapp
                 overzicht.hulpverlenerID = MainWindow.gebruiker.Id;
                 overzicht.patientID = p.id;
                 overzicht.tijdstip = DateTime.Now;
-                dal.insertOverzicht(overzicht);
+                await dal.insertOverzicht(overzicht);
 
                 this.Close();
                 MessageBox.Show("Aanvraag is opgeslagen!", "Aanvraag", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                logger.log(ex.Message);
             }
         }
 

@@ -131,6 +131,7 @@
     <Compile Include="classes\Categorie.cs" />
     <Compile Include="classes\Functie.cs" />
     <Compile Include="classes\Gemeente.cs" />
+    <Compile Include="classes\Logger.cs" />
     <Compile Include="classes\Overzicht.cs" />
     <Compile Include="classes\Patient.cs" />
     <Compile Include="classes\Persoon.cs" />

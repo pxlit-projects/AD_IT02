@@ -20,19 +20,22 @@ namespace desktopapp
     /// </summary>
     public partial class BewerkFunctie : Window
     {
-        DAL dal = new DAL();
+        private DAL dal = new DAL();
+        private Functie functie = new Functie();
+        private Logger logger = new Logger();
 
-        public BewerkFunctie()
+        public BewerkFunctie(Functie f)
         {
             InitializeComponent();
             try
             {
-                txtfunctie.Text = AdminPaneel.functie.functienaam;
-                txtbeschrijving.Text = AdminPaneel.functie.beschrijving;
+                functie = f;
+                txtfunctie.Text = functie.functienaam;
+                txtbeschrijving.Text = functie.beschrijving;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                logger.log(ex.Message);
             }
         }
 
@@ -41,23 +44,21 @@ namespace desktopapp
             Close();
         }
 
-        private void btnBevestig_Click(object sender, RoutedEventArgs e)
+        private async void btnBevestig_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                AdminPaneel.functie.functienaam = txtfunctie.Text;
-                AdminPaneel.functie.beschrijving = txtbeschrijving.Text;
+                functie.functienaam = txtfunctie.Text;
+                functie.beschrijving = txtbeschrijving.Text;
 
-                DAL.UpdateFunctie(AdminPaneel.functie);
+                await dal.UpdateFunctie(functie);
 
-                this.Close();
+                this.Close(); 
                 MessageBox.Show("De functie is opgeslagen!", "Nieuwe functie", MessageBoxButton.OK, MessageBoxImage.Information);
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                logger.log(ex.Message);
             }
         }
     }

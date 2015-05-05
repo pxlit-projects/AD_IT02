@@ -20,37 +20,40 @@ namespace desktopapp
     /// </summary>
     public partial class BewerkCategorie : Window
     {
-        DAL dal = new DAL();
-        public BewerkCategorie()
+        private Categorie categorie = new Categorie();
+        private DAL dal = new DAL();
+        private Logger logger = new Logger();
+
+        public BewerkCategorie(Categorie c)
         {
             InitializeComponent();
             try
             {
-                txtcategorie.Text = AdminPaneel.categorie.naam;
-                txtbeschrijving.Text = AdminPaneel.categorie.beschrijving;
+                categorie = c;
+                txtcategorie.Text = categorie.naam;
+                txtbeschrijving.Text = categorie.beschrijving;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                logger.log(ex.Message);
             }
         }
 
-        private void btnBevestig_Click(object sender, RoutedEventArgs e)
+        private async void btnBevestig_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                AdminPaneel.categorie.naam = txtcategorie.Text;
-                AdminPaneel.categorie.beschrijving = txtbeschrijving.Text;
+                categorie.naam = txtcategorie.Text;
+                categorie.beschrijving = txtbeschrijving.Text;
 
-                DAL.UpdateCategorie(AdminPaneel.categorie);
+                await dal.UpdateCategorie(categorie);
 
-                this.Close();
+                this.Close(); 
                 MessageBox.Show("De categorie is opgeslagen!", "Nieuwe categorie", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                logger.log(ex.Message);
             }
         }
 

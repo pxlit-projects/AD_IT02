@@ -20,32 +20,35 @@ namespace desktopapp
     /// </summary>
     public partial class BewerkGebruiker : Window
     {
-        public DAL dal = new DAL();
-        public BewerkGebruiker()
+        private DAL dal = new DAL();
+        private Logger logger = new Logger();
+        private Persoon persoon = new Persoon();
+
+        public BewerkGebruiker(Persoon p)
         {
             InitializeComponent();
-            try //combobox gegevens ophalen
+            try //Gevens ophalen
             {
                 this.cbo_Functie.DataContext = dal.getFunctie();
-
-                txtvoornaam.Text = AdminPaneel.persoon.voornaam;
-                txtnaam.Text = AdminPaneel.persoon.naam;
-                txtgeboorte.Text = Convert.ToString(AdminPaneel.persoon.geboortejaar);
-                txtstraat.Text = AdminPaneel.persoon.straat;
-                txtpostcode.Text = Convert.ToString(AdminPaneel.persoon.postcode);
-                txttelefoon.Text = AdminPaneel.persoon.telefoon;
-                txtgsm.Text = AdminPaneel.persoon.gsm;
-                cbo_Functie.SelectedValue = AdminPaneel.persoon.functieID;//MOET NOG TEGOEI GEMAAKT WORDEN
-                txtbedrijf.Text = AdminPaneel.persoon.bedrijf;
-                txtemail.Text = AdminPaneel.persoon.email;
-                txtlogin.Text = AdminPaneel.persoon.gebruikersnaam;
-                txtwachtwoord.Text = AdminPaneel.persoon.wachtwoord;
-                cb_geactiveerd.IsChecked = AdminPaneel.persoon.geactiveerd;
-                txtgeslacht.Text = AdminPaneel.persoon.geslacht;
+                persoon = p;
+                txtvoornaam.Text = persoon.voornaam;
+                txtnaam.Text = persoon.naam;
+                txtgeboorte.Text = persoon.geboortejaar.ToString("dd-MM-yyyy");
+                txtstraat.Text = persoon.straat;
+                txtpostcode.Text = Convert.ToString(persoon.postcode);
+                txttelefoon.Text = persoon.telefoon;
+                txtgsm.Text = persoon.gsm;
+                cbo_Functie.SelectedValue = persoon.functieID;
+                txtbedrijf.Text = persoon.bedrijf;
+                txtemail.Text = persoon.email;
+                txtlogin.Text = persoon.gebruikersnaam;
+                txtwachtwoord.Text = persoon.wachtwoord;
+                cb_geactiveerd.IsChecked = persoon.geactiveerd;
+                txtgeslacht.Text = persoon.geslacht;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                logger.log(ex.Message);
             }
         }
 
@@ -54,34 +57,34 @@ namespace desktopapp
             Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
             try //gegevens opslaan in de database
             {
-                AdminPaneel.persoon.voornaam = txtvoornaam.Text;
-                AdminPaneel.persoon.naam = txtnaam.Text;
-                AdminPaneel.persoon.geboortejaar = Convert.ToDateTime(txtgeboorte.Text);
-                AdminPaneel.persoon.straat = txtstraat.Text;
-                AdminPaneel.persoon.postcode = Convert.ToInt32(txtpostcode.Text);
-                AdminPaneel.persoon.telefoon = txttelefoon.Text;
-                AdminPaneel.persoon.gsm = txtgsm.Text;
+                persoon.voornaam = txtvoornaam.Text;
+                persoon.naam = txtnaam.Text;
+                persoon.geboortejaar = Convert.ToDateTime(txtgeboorte.Text);
+                persoon.straat = txtstraat.Text;
+                persoon.postcode = Convert.ToInt32(txtpostcode.Text);
+                persoon.telefoon = txttelefoon.Text;
+                persoon.gsm = txtgsm.Text;
                 Functie functie = (Functie)cbo_Functie.SelectedItem;
-                AdminPaneel.persoon.functieID = functie.id;
-                AdminPaneel.persoon.bedrijf = txtbedrijf.Text;
-                AdminPaneel.persoon.email = txtemail.Text;
-                AdminPaneel.persoon.gebruikersnaam = txtlogin.Text;
-                AdminPaneel.persoon.wachtwoord = txtwachtwoord.Text;
-                AdminPaneel.persoon.geslacht = txtgeslacht.Text;
-                AdminPaneel.persoon.geactiveerd = Convert.ToBoolean(cb_geactiveerd.IsChecked);
+                persoon.functieID = functie.id;
+                persoon.bedrijf = txtbedrijf.Text;
+                persoon.email = txtemail.Text;
+                persoon.gebruikersnaam = txtlogin.Text;
+                persoon.wachtwoord = txtwachtwoord.Text;
+                persoon.geslacht = txtgeslacht.Text;
+                persoon.geactiveerd = Convert.ToBoolean(cb_geactiveerd.IsChecked);
 
-                DAL.UpdateGebruiker(AdminPaneel.persoon);
+                await dal.UpdateGebruiker(persoon);
 
-                this.Close();
+                this.Close(); 
                 MessageBox.Show("Gebruiker is opgeslagen!", "Nieuwe Gebruiker", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                logger.log(ex.Message+"1","2");
             }
         }
     }

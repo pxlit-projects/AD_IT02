@@ -21,6 +21,7 @@ namespace desktopapp
     public partial class NieuweGebruiker : Window
     {
         private DAL dal = new DAL();
+        private Logger logger = new Logger();
 
         public NieuweGebruiker()
         {
@@ -29,13 +30,13 @@ namespace desktopapp
             {
                 this.cbo_Functie.DataContext = dal.getFunctie();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                logger.log(ex.Message);
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
             try //gegevens opslaan in de database
             {
@@ -57,13 +58,14 @@ namespace desktopapp
                 p.geslacht = txtgeslacht.Text;
                 p.geactiveerd = Convert.ToBoolean(cb_geactiveerd.IsChecked);
 
-                dal.insertPersoon(p);
-                this.Close();
+                await dal.insertPersoon(p);
+
+                this.Close(); 
                 MessageBox.Show("Gebruiker is opgeslagen!", "Nieuwe Gebruiker", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                logger.log(ex.Message);
             }
         }
 

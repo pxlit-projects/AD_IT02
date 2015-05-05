@@ -20,7 +20,8 @@ namespace desktopapp
     /// </summary>
     public partial class onderzoeker : Window
     {
-        DAL dal = new DAL();
+        private DAL dal = new DAL();
+        private Logger logger = new Logger();
 
         public onderzoeker()
         {
@@ -29,22 +30,37 @@ namespace desktopapp
             {
                 this.dg_OverzichtOnderzoeker.DataContext = dal.getOverzicht();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.log(ex.Message);
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new MainWindow();
-            main.Show();
-            Close();
+            try
+            {
+                MainWindow main = new MainWindow();
+                main.Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MijnAccount mijnaccount = new MijnAccount();
-            mijnaccount.ShowDialog();
+            try
+            {
+                MijnAccount mijnaccount = new MijnAccount();
+                mijnaccount.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
+            }
         }
     }
 }

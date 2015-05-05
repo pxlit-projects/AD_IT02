@@ -20,9 +20,11 @@ namespace desktopapp
     /// </summary>
     public partial class hulpverlener : Window
     {
-        DAL dal = new DAL();
-        List<Overzicht> overzichten;
-        List<Overzicht> overzichtenhulpverlener = new List<Overzicht>();
+        private DAL dal = new DAL();
+        private List<Overzicht> overzichten;
+        private List<Overzicht> overzichtenhulpverlener = new List<Overzicht>();
+        private Logger logger = new Logger();
+
         public hulpverlener()
         {
             InitializeComponent();
@@ -43,29 +45,50 @@ namespace desktopapp
                 }
                 this.dg_OverzichtOnderzoeker.DataContext = overzichtenhulpverlener;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.log(ex.Message);
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow main=new MainWindow();
-            main.Show();
-            Close();
-            
+            try
+            {
+                MainWindow main = new MainWindow();
+                main.Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MijnAccount mijnaccount = new MijnAccount();
-            mijnaccount.ShowDialog();
+            try
+            {
+                MijnAccount mijnaccount = new MijnAccount();
+                mijnaccount.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Aanvraag aanvraag = new Aanvraag();
-            aanvraag.ShowDialog();
+            try
+            {
+                Aanvraag aanvraag = new Aanvraag();
+                aanvraag.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
+            }
         }
     }
 }

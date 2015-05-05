@@ -21,14 +21,19 @@ namespace desktopapp
     public partial class AdminPaneel : Window
     {
         private DAL dal = new DAL();
-        public static Persoon persoon;
-        public static Functie functie;
-        public static Categorie categorie;
+        private Persoon persoon;
+        private Functie functie;
+        private Categorie categorie;
+        private Logger logger = new Logger();
+        private int iPersonen = 0;
+        private int iCategorie = 0;
+        private int iFunctie = 0;
 
         public AdminPaneel()
         {
             InitializeComponent();
         }
+
         private void Window_Activated(object sender, System.EventArgs e)
         {
             try
@@ -36,41 +41,68 @@ namespace desktopapp
                 this.tabFuncties.DataContext = dal.getFunctie();
                 this.tabGebruikers.DataContext = dal.getPersonen();
                 this.tabCategories.DataContext = dal.getCategorie();
+
+                this.lstboxPersonen.SelectedIndex = iPersonen;
+                this.cbo_categorienaam.SelectedIndex = iCategorie;
+                this.cbo_functienaam.SelectedIndex = iFunctie;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.log(ex.Message);
             }
         }
 
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MijnAccount mijnaccount = new MijnAccount();
-            mijnaccount.ShowDialog();
+            try
+            {
+                MijnAccount mijnaccount = new MijnAccount();
+                mijnaccount.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new MainWindow();
-            main.Show();
-            Close();
+            try
+            {
+                MainWindow main = new MainWindow();
+                main.Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
+            }
         }
         private void lstboxPersonen_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            persoon = (Persoon)lstboxPersonen.SelectedItem;
-            this.gb_info.DataContext = dal.getPersoon(persoon.Id);
+            try
+            {
+                persoon = (Persoon)lstboxPersonen.SelectedItem;
+                this.gb_info.DataContext = dal.getPersoon(persoon.Id);
+                iPersonen = lstboxPersonen.SelectedIndex;
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
+                MessageBox.Show("error");
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             try
             {
-                NieuweFunctie nieuwegebruiker = new NieuweFunctie();
+                NieuweGebruiker nieuwegebruiker = new NieuweGebruiker();
                 nieuwegebruiker.ShowDialog();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                logger.log(ex.Message);
             }
         }
 
@@ -78,31 +110,54 @@ namespace desktopapp
         {
             try
             {
-                BewerkGebruiker bewerkgebruiker = new BewerkGebruiker();
+                BewerkGebruiker bewerkgebruiker = new BewerkGebruiker(persoon);
                 bewerkgebruiker.ShowDialog();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.log(ex.Message);
             }
         }
 
-        private void btnVerwijder_Click(object sender, RoutedEventArgs e)
+        private async void btnVerwijder_Click(object sender, RoutedEventArgs e)
         {
-                dal.deletePersoon(persoon.Id);
+            try
+            {
+                await dal.deletePersoon(persoon.Id);
                 MessageBox.Show("Verwijderen gelukt!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
+            }
         }
 
         private void cbo_functienaam_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            functie = (Functie)cbo_functienaam.SelectedItem;
-            this.lblbeschrijving.DataContext = dal.getFunctie(functie.id);
+            try
+            {
+                functie = (Functie)cbo_functienaam.SelectedItem;
+                this.lblbeschrijving.DataContext = dal.getFunctie(functie.id);
+                iFunctie = cbo_functienaam.SelectedIndex;
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
+            }
         }
 
         private void cbo_categorienaam_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            categorie = (Categorie)cbo_categorienaam.SelectedItem;
-            this.lblbeschrijvingCategorie.DataContext = dal.getCategorie(categorie.id);
+            try
+            {
+                categorie = (Categorie)cbo_categorienaam.SelectedItem;
+                this.lblbeschrijvingCategorie.DataContext = dal.getCategorie(categorie.id);
+                iCategorie = cbo_categorienaam.SelectedIndex;
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
+            }
         }
 
         private void btnNieuwFunctie_Click(object sender, RoutedEventArgs e)
@@ -112,9 +167,9 @@ namespace desktopapp
                 NieuweFunctie nieuweFunctie = new NieuweFunctie();
                 nieuweFunctie.ShowDialog();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.log(ex.Message);
             }
 
         }
@@ -123,20 +178,26 @@ namespace desktopapp
         {
             try
             {
-                BewerkFunctie bewerkfunctie = new BewerkFunctie();
+                BewerkFunctie bewerkfunctie = new BewerkFunctie(functie);
                 bewerkfunctie.ShowDialog();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.log(ex.Message);
             }
         }
 
-        private void btnVerwijderFunctie_Click(object sender, RoutedEventArgs e)
+        private async void btnVerwijderFunctie_Click(object sender, RoutedEventArgs e)
         {
-
-               dal.deleteFunctie(functie.id);
-               MessageBox.Show("Verwijderen gelukt!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.Information);
+            try
+            {
+                await dal.deleteFunctie(functie.id);
+                MessageBox.Show("Verwijderen gelukt!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
+            }
         }
 
         private void btnNieuwCategorie_Click(object sender, RoutedEventArgs e)
@@ -146,9 +207,9 @@ namespace desktopapp
                 NieuweCategorie nieuwecategorie = new NieuweCategorie();
                 nieuwecategorie.ShowDialog();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.log(ex.Message);
             }
         }
 
@@ -156,20 +217,26 @@ namespace desktopapp
         {
             try
             {
-                BewerkCategorie bewerkcategorie = new BewerkCategorie();
+                BewerkCategorie bewerkcategorie = new BewerkCategorie(categorie);
                 bewerkcategorie.ShowDialog();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.log(ex.Message);
             }
-
         }
 
-        private void btnVerwijderCategorie_Click(object sender, RoutedEventArgs e)
+        private async void btnVerwijderCategorie_Click(object sender, RoutedEventArgs e)
         {
-                dal.deleteCategorie(categorie.id);
+            try
+            {
+                await dal.deleteCategorie(categorie.id);
                 MessageBox.Show("Verwijderen gelukt!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
+            }
         }
     }
 }

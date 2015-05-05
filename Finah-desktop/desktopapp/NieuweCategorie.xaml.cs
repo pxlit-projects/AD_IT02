@@ -20,14 +20,15 @@ namespace desktopapp
     /// </summary>
     public partial class NieuweCategorie : Window
     {
-        DAL dal = new DAL();
+        private DAL dal = new DAL();
+        private Logger logger = new Logger();
 
         public NieuweCategorie()
         {
             InitializeComponent();
         }
 
-        private void btnBevestig_Click(object sender, RoutedEventArgs e)
+        private async void btnBevestig_Click(object sender, RoutedEventArgs e)
         {
             try //gegevens opslaan in de database
             {
@@ -36,14 +37,14 @@ namespace desktopapp
                 cat.naam = txtcategorienaam.Text;
                 cat.beschrijving = txtcategoriebeschrijving.Text;
 
-                dal.insertCategorie(cat);
+                await dal.insertCategorie(cat);
 
-                this.Close();
+                this.Close(); 
                 MessageBox.Show("De nieuwe categorie is opgeslagen!", "Nieuwe functie", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                logger.log(ex.Message);
             }
         }
 

@@ -28,7 +28,7 @@
         <Label Content="Loginnaam:" HorizontalAlignment="Left" Margin="14,185,0,0" VerticalAlignment="Top"/>
         <Label Content="Wachtwoord:" HorizontalAlignment="Left" Margin="5,211,0,0" VerticalAlignment="Top"/>
         <Button x:Name="aanpassen" Content="aanpassen" HorizontalAlignment="Left" Margin="110,260,0,0" VerticalAlignment="Top" Width="75" Click="aanpassen_Click"/>
-        <Button x:Name="annuleer" Content="Annuleren" HorizontalAlignment="Left" Margin="350,260,0,0" VerticalAlignment="Top" Width="75" Click="annuleer_Click"/>
+        <Button x:Name="annuleer" Content="Sluiten" HorizontalAlignment="Left" Margin="350,260,0,0" VerticalAlignment="Top" Width="75" Click="annuleer_Click"/>
 
     </Grid>
 </Window>

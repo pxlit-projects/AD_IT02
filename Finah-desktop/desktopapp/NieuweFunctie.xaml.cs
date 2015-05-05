@@ -20,13 +20,15 @@ namespace desktopapp
     /// </summary>
     public partial class NieuweFunctie : Window
     {
-        DAL dal = new DAL();
+        private DAL dal = new DAL();
+        private Logger logger = new Logger();
+
         public NieuweFunctie()
         {
             InitializeComponent();
         }
 
-        private void btnBevestig_Click(object sender, RoutedEventArgs e)
+        private async void btnBevestig_Click(object sender, RoutedEventArgs e)
         {
             try //gegevens opslaan in de database
             {
@@ -35,14 +37,14 @@ namespace desktopapp
                 f.functienaam = txtfunctienaam.Text;
                 f.beschrijving = txtfunctiebeschrijving.Text;
 
-                dal.insertFunctie(f);
+                await dal.insertFunctie(f);
 
-                this.Close();
+                this.Close(); 
                 MessageBox.Show("De nieuwe functie is opgeslagen!", "Nieuwe functie", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                logger.log(ex.Message);
             }
         }
 

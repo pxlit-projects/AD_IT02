@@ -7,15 +7,7 @@
             <Grid Margin="0,-26,0,4">
                 <TextBox x:Name="txtvoornaam" HorizontalAlignment="Left" Height="23" Margin="333,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <TextBox x:Name="txtgeboorte" HorizontalAlignment="Left" Height="23" Margin="333,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <ComboBox x:Name="cbo_Functie" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="333,102,0,0" VerticalAlignment="Top" Width="120">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding functienaam}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                <ComboBox x:Name="cbo_Functie" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" DisplayMemberPath="functienaam" SelectedValuePath="id" HorizontalAlignment="Left" Margin="333,102,0,0" VerticalAlignment="Top" Width="120"/>
                 <TextBox x:Name="txtstraat" HorizontalAlignment="Left" Height="23" Margin="333,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <TextBox x:Name="txtgsm" HorizontalAlignment="Left" Height="23" Margin="333,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <CheckBox x:Name="cb_geactiveerd" Content="" HorizontalAlignment="Left" Margin="333,220,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,-1.733"/>

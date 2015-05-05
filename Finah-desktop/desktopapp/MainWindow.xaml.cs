@@ -22,7 +22,7 @@ namespace desktopapp
     {
         public static Persoon gebruiker;
         private DAL dal = new DAL();
-        public Persoon login;
+        private Logger logger = new Logger();
 
         public MainWindow()
         {
@@ -36,8 +36,9 @@ namespace desktopapp
             {
                 Login();
             }
-            catch (Exception ex){
-                MessageBox.Show(ex.Message,"error");
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
             }
         }
 
@@ -48,48 +49,59 @@ namespace desktopapp
 
         private void Login()
         {
-            gebruiker = dal.ZoekGebruiker(txtNaam.Text, txtWachtwoord.Password);
-            if (gebruiker == null)
+            try
             {
-                MessageBox.Show("Gebruikersnaam/Wachtwoord is fout.");
-            }
-            else
-            {
-                login = gebruiker;
-                
-                switch (gebruiker.functieID)
+                gebruiker = dal.getGebruiker(txtNaam.Text, txtWachtwoord.Password);
+                if (gebruiker == null)
                 {
-                    case 1:
-                        AdminPaneel admin = new AdminPaneel();
-                        admin.Show();
-                        break;
-                    case 2:
-                        onderzoeker onderzoeker = new onderzoeker();
-                        onderzoeker.Show();
-                        break;
-                    default:
-                        hulpverlener hulpverlener = new hulpverlener();
-                        hulpverlener.Show();
-                        break;
+                    MessageBox.Show("Gebruikersnaam/Wachtwoord is fout.");
                 }
-                Close();
+                else
+                {
+                    switch (gebruiker.functieID)
+                    {
+                        case 1:
+                            AdminPaneel admin = new AdminPaneel();
+                            admin.Show();
+                            break;
+                        case 2:
+                            onderzoeker onderzoeker = new onderzoeker();
+                            onderzoeker.Show();
+                            break;
+                        default:
+                            hulpverlener hulpverlener = new hulpverlener();
+                            hulpverlener.Show();
+                            break;
+                    }
+                    Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
             }
         }
 
-        private void txtWachtwoord_KeyDown(object sender, KeyEventArgs e)
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)//Inloggen bij enter te duwen
         {
-            if (e.Key == Key.Enter)
+            try
             {
-                try
+                if (e.Key == Key.Enter)
                 {
-                    Login();
+                    try
+                    {
+                        Login();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "error");
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "error");
-                }  
             }
-           
+            catch (Exception ex)
+            {
+                logger.log(ex.Message);
+            }  
         }
     }
 }
