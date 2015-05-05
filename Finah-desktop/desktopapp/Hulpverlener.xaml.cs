@@ -21,7 +21,8 @@ namespace desktopapp
     public partial class hulpverlener : Window
     {
         DAL dal = new DAL();
-
+        List<Overzicht> overzichten;
+        List<Overzicht> overzichtenhulpverlener = new List<Overzicht>();
         public hulpverlener()
         {
             InitializeComponent();
@@ -32,7 +33,15 @@ namespace desktopapp
         {
             try
             {
-                this.dg_OverzichtOnderzoeker.DataContext = dal.getOverzicht();
+                overzichten = dal.getOverzicht();
+                foreach (Overzicht o in overzichten)
+                {
+                    if (o.hulpverlenerID.Equals(MainWindow.gebruiker.Id))
+                    {
+                        overzichtenhulpverlener.Add(o);
+                    }
+                }
+                this.dg_OverzichtOnderzoeker.DataContext = overzichtenhulpverlener;
             }
             catch (Exception)
             {
