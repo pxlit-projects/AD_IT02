@@ -16,7 +16,7 @@ Kennith Metten
     * Compatibility testing
 
 ### Instructies
-exe file als Administrator uitvoeren (voor de logging/foutafhandeling schrijfrechten te geven naar de C schijf)
+Maak een map "logs" op de C schijf (vanwege schrijfrechten voor de logging)
 Inloggen gaat met de volgende gebruikers (voor de verschillende windows te kunnen zien)
 
 1. gebruikersnaam: admin & wachtwoord: Test123
