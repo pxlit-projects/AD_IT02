@@ -136,6 +136,7 @@
     <Compile Include="classes\Patient.cs" />
     <Compile Include="classes\Persoon.cs" />
     <Compile Include="classes\DAL.cs" />
+    <Compile Include="classes\VolledigOverzicht.cs" />
     <Compile Include="Hulpverlener.xaml.cs">
       <DependentUpon>Hulpverlener.xaml</DependentUpon>
     </Compile>

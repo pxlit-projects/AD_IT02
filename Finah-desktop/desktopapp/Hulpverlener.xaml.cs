@@ -22,28 +22,46 @@ namespace desktopapp
     {
         private DAL dal = new DAL();
         private List<Overzicht> overzichten;
+        private List<Patient> patienten;
+        private List<VolledigOverzicht> volledigoverzicht;
         private List<Overzicht> overzichtenhulpverlener = new List<Overzicht>();
+        private List<Patient> overzichtenpatient = new List<Patient>();
         private Logger logger = new Logger();
+        private VolledigOverzicht v;
 
         public hulpverlener()
         {
             InitializeComponent();
-            txtwelkom.Content = MainWindow.gebruiker.gebruikersnaam.ToString();
+            txtwelkom.Content = "Welkom " + MainWindow.gebruiker.voornaam.ToString() + " " + MainWindow.gebruiker.naam.ToString();
         }
 
         private void Window_Activated(object sender, System.EventArgs e)
         {
             try
             {
+                volledigoverzicht = new List<VolledigOverzicht>();
                 overzichten = dal.getOverzicht();
+                patienten = dal.getPatienten();
+
                 foreach (Overzicht o in overzichten)
                 {
                     if (o.hulpverlenerID.Equals(MainWindow.gebruiker.Id))
                     {
-                        overzichtenhulpverlener.Add(o);
+                        foreach (Patient p in patienten)
+                        {
+                            if (o.patientID == p.id)
+                            {
+                                if (o != null & p != null)
+                                {
+                                    v = new VolledigOverzicht(p, o);
+                                    volledigoverzicht.Add(v);
+                                } 
+                            }
+                        }
                     }
                 }
-                this.dg_OverzichtOnderzoeker.DataContext = overzichtenhulpverlener;
+                this.dg_OverzichtHulpverlener.DataContext = volledigoverzicht;
+
             }
             catch (Exception ex)
             {

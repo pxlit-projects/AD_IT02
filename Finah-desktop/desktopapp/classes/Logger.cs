@@ -23,7 +23,7 @@ namespace desktopapp.classes
                 string userName = MainWindow.gebruiker.gebruikersnaam;
                 using (writer = new StreamWriter(MainPath, true))
                 {
-                    string prefix = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") + " - " + userName + " - " + "error" + " - ";
+                    string prefix = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " - " + userName + " - " + "error" + " - ";
                     msg = prefix + msg;
                     writer.WriteLine(msg);
                     writer.Flush();
