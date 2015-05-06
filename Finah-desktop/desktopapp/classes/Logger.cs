@@ -18,36 +18,12 @@ namespace desktopapp.classes
             try
             {
                 Console.WriteLine(msg);
-                String DrivePath = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System));
-                String MainPath = DrivePath + "log_" + ApplicationName + ".txt";
+                String DrivePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                String MainPath = DrivePath + "/log_" + ApplicationName + ".txt";
                 string userName = MainWindow.gebruiker.gebruikersnaam;
                 using (writer = new StreamWriter(MainPath, true))
                 {
-                    string prefix = DateTime.UtcNow.ToString("dd/MM/yyyy hh:mm:ss") + " - " + userName + " - " + "error" + " - ";
-                    msg = prefix + msg;
-                    writer.WriteLine(msg);
-                    writer.Flush();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: The logging service is unable to log this event.\n" + ex.Message);
-            }
-        }
-
-        //Writes a log with a custom log-type
-        public void log(String msg, String type)
-        {
-            StreamWriter writer = null;
-            try
-            {
-                Console.WriteLine(msg);
-                String DrivePath = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System));
-                String MainPath = DrivePath + "log_" + ApplicationName + ".txt";
-                string userName = MainWindow.gebruiker.gebruikersnaam;
-                using (writer = new StreamWriter(MainPath, true))
-                {
-                    string prefix = DateTime.UtcNow.ToString("dd/MM/yyyy hh:mm:ss") + " - " + userName + " - " + type + " - ";
+                    string prefix = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") + " - " + userName + " - " + "error" + " - ";
                     msg = prefix + msg;
                     writer.WriteLine(msg);
                     writer.Flush();

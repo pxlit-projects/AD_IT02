@@ -38,7 +38,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -54,11 +54,12 @@ namespace desktopapp
                 gebruiker = dal.getGebruiker(txtNaam.Text, txtWachtwoord.Password);
                 if (gebruiker == null)
                 {
-                    MessageBox.Show("Gebruikersnaam/Wachtwoord is fout.");
+                    MessageBox.Show("Gebruikersnaam/Wachtwoord is fout.", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    switch (gebruiker.functieID)
+                    if (gebruiker.geactiveerd == true) { 
+                        switch (gebruiker.functieID)
                     {
                         case 1:
                             AdminPaneel admin = new AdminPaneel();
@@ -73,12 +74,17 @@ namespace desktopapp
                             hulpverlener.Show();
                             break;
                     }
-                    Close();
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Dit account is gedeactiveerd, neem contact op met de beheerder", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }     
                 }
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -94,13 +100,13 @@ namespace desktopapp
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "error");
+                        logger.log(ex.ToString());
                     }
                 }
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }  
         }
     }

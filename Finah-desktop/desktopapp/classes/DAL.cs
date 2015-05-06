@@ -51,7 +51,6 @@ namespace desktopapp.classes
                 }
                 catch (Exception)
                 {
-
                     MessageBox.Show("Gebruikersnaam ofwachtwoord fout.");
                 }
                 return Gebruiker;
@@ -185,7 +184,7 @@ namespace desktopapp.classes
                 }
                 catch (Exception ex)
                 {
-                    logger.log(ex.Message);
+                    logger.log(ex.ToString());
                 }
                 return model;
             } 
@@ -214,7 +213,7 @@ namespace desktopapp.classes
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
             return 1;
         }
@@ -242,7 +241,7 @@ namespace desktopapp.classes
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
             return 1;
         }
@@ -269,7 +268,7 @@ namespace desktopapp.classes
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
             return 1;
         }

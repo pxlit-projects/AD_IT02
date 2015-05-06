@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Login" Height="279.851" Width="385.58" WindowStartupLocation="CenterScreen">
     <Grid Background="#48a9e4" Margin="0,0,-8,0">
-        <Image HorizontalAlignment="Left" Height="100" Margin="19,10,0,0" VerticalAlignment="Top" Width="100" Source="images/logo.png"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="19,10,0,0" VerticalAlignment="Top" Width="100" Source="images/logopxl.png"/>
         <Label Content="Finah" HorizontalAlignment="Left" Margin="125,47,0,0" VerticalAlignment="Top" FontSize="30" Foreground="White"/>
         <Label Content="Gebruikersnaam&#xD;&#xA;" Margin="0,127,190,0" VerticalAlignment="Top" RenderTransformOrigin="3.157,0.38" HorizontalAlignment="Right"/>
         <Label Content="Wachtwoord&#xD;&#xA;" Margin="0,160,208,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="78"/>

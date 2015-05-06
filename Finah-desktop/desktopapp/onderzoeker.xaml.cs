@@ -32,7 +32,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -46,7 +46,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -59,7 +59,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
     }

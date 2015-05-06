@@ -48,7 +48,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -61,7 +61,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -75,7 +75,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
         private void lstboxPersonen_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -83,13 +83,15 @@ namespace desktopapp
             try
             {
                 persoon = (Persoon)lstboxPersonen.SelectedItem;
-                this.gb_info.DataContext = dal.getPersoon(persoon.Id);
-                iPersonen = lstboxPersonen.SelectedIndex;
+                if (persoon != null)
+                {
+                    this.gb_info.DataContext = dal.getPersoon(persoon.Id);
+                    iPersonen = lstboxPersonen.SelectedIndex;
+                }
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
-                MessageBox.Show("error");
+                logger.log(ex.ToString());
             }
         }
 
@@ -102,7 +104,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -115,7 +117,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -128,7 +130,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -137,12 +139,15 @@ namespace desktopapp
             try
             {
                 functie = (Functie)cbo_functienaam.SelectedItem;
+                if (functie != null)
+                {
                 this.lblbeschrijving.DataContext = dal.getFunctie(functie.id);
                 iFunctie = cbo_functienaam.SelectedIndex;
+                }
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -151,12 +156,15 @@ namespace desktopapp
             try
             {
                 categorie = (Categorie)cbo_categorienaam.SelectedItem;
+                if (categorie != null)
+                {
                 this.lblbeschrijvingCategorie.DataContext = dal.getCategorie(categorie.id);
                 iCategorie = cbo_categorienaam.SelectedIndex;
+                }
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -169,7 +177,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
 
         }
@@ -183,7 +191,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -196,7 +204,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -209,7 +217,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -222,7 +230,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -235,7 +243,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
     }

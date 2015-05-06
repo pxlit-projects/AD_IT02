@@ -60,7 +60,7 @@ namespace desktopapp
                         }
                         catch (Exception ex)
                         {
-                            logger.log(ex.Message);
+                            logger.log(ex.ToString());
                         }
                         aanpassen.Content = "Aanpassen";
                         TextboxEnable(false);
@@ -70,7 +70,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -93,7 +93,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }  
         }
 
@@ -116,7 +116,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
@@ -139,7 +139,7 @@ namespace desktopapp
             }
             catch (Exception ex)
             {
-                logger.log(ex.Message);
+                logger.log(ex.ToString());
             }
         }
 
