@@ -9,9 +9,11 @@
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-    <p>Beste meneer/mevrouw <?php /* echo $_POST(name)*/?></p>
-    <div>
-        De vragenlijst is doorgestuurd. U kunt de browser afsluiten.</br>Bedankt dat u onze enquete heeft ingevuld. 
+    <div id="content">
+        <p>Beste meneer/mevrouw <?php /* echo $_POST(name)*/?>.</p>
+        <div>
+            De vragenlijst is doorgestuurd. U kunt de browser afsluiten.</br>Bedankt dat u onze enquête heeft ingevuld. 
+        </div>
     </div>
 </body>
 </html>

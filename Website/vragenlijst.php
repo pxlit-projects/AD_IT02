@@ -31,8 +31,7 @@ session_start();
         for ($i = 0; $i <= 52; $i++) {
                 array_push($waarden, $_SESSION["alle_antwoorden"][$i]);
         }
-        print_r($waarden);
-        $sql2 = "INSERT INTO antwoorden(vraag_1, vraag_2, vraag_3, vraag_4, vraag_5, vraag_6, vraag_7, vraag_8, vraag_9, vraag_10, vraag_11, vraag_12, vraag_13, vraag_14, vraag_15, vraag_16, vraag_17, vraag_18, vraag_19, vraag_20, vraag_21, vraag_22, vraag_23, vraag_24, vraag_25, vraag_26, vraag_27, vraag_28, vraag_29, vraag_30, vraag_31, vraag_32, vraag_33, vraag_34, vraag_35, vraag_36, vraag_37, vraag_38, vraag_39, vraag_40, vraag_41, vraag_42, vraag_43, vraag_44, vraag_45, vraag_46, vraag_47, vraag_48, vraag_49, vraag_50, vraag_51, vraag_52, vraag_53) VALUES($waarden[0], $waarden[1], $waarden[2], $waarden[3], $waarden[4], $waarden[5], $waarden[6], $waarden[7], $waarden[8], $waarden[9], $waarden[10], $waarden[11], $waarden[12], $waarden[13], $waarden[14], $waarden[15], $waarden[16], $waarden[17], $waarden[18], $waarden[19], $waarden[20], $waarden[21], $waarden[22], $waarden[23], $waarden[24], $waarden[25], $waarden[26], $waarden[27], $waarden[28], $waarden[29], $waarden[30], $waarden[31], $waarden[32], $waarden[33], $waarden[34], $waarden[35], $waarden[36], $waarden[37], $waarden[38], $waarden[39], $waarden[40], $waarden[41], $waarden[42], $waarden[43], $waarden[44], $waarden[45], $waarden[46], $waarden[47], $waarden[48], $waarden[49], $waarden[50], $waarden[51], $waarden[52] )";              // Mee bezig !!!
+        $sql2 = "INSERT INTO antwoorden(vraag_1, vraag_2, vraag_3, vraag_4, vraag_5, vraag_6, vraag_7, vraag_8, vraag_9, vraag_10, vraag_11, vraag_12, vraag_13, vraag_14, vraag_15, vraag_16, vraag_17, vraag_18, vraag_19, vraag_20, vraag_21, vraag_22, vraag_23, vraag_24, vraag_25, vraag_26, vraag_27, vraag_28, vraag_29, vraag_30, vraag_31, vraag_32, vraag_33, vraag_34, vraag_35, vraag_36, vraag_37, vraag_38, vraag_39, vraag_40, vraag_41, vraag_42, vraag_43, vraag_44, vraag_45, vraag_46, vraag_47, vraag_48, vraag_49, vraag_50, vraag_51, vraag_52, vraag_53) VALUES('$waarden[0]', '$waarden[1]', '$waarden[2]', '$waarden[3]', '$waarden[4]', '$waarden[5]', '$waarden[6]', '$waarden[7]', '$waarden[8]', '$waarden[9]', '$waarden[10]', '$waarden[11]', '$waarden[12]', '$waarden[13]', '$waarden[14]', '$waarden[15]', '$waarden[16]', '$waarden[17]', '$waarden[18]', '$waarden[19]', '$waarden[20]', '$waarden[21]', '$waarden[22]', '$waarden[23]', '$waarden[24]', '$waarden[25]', '$waarden[26]', '$waarden[27]', '$waarden[28]', '$waarden[29]', '$waarden[30]', '$waarden[31]', '$waarden[32]', '$waarden[33]', '$waarden[34]', '$waarden[35]', '$waarden[36]', '$waarden[37]', '$waarden[38]', '$waarden[39]', '$waarden[40]', '$waarden[41]', '$waarden[42]', '$waarden[43]', '$waarden[44]', '$waarden[45]', '$waarden[46]', '$waarden[47]', '$waarden[48]', '$waarden[49]', '$waarden[50]', '$waarden[51]', '$waarden[52]' )";
         $result = $conn->query($sql2);
         $conn->close();
     }
@@ -71,7 +70,6 @@ session_start();
 
     $antwoord = "";
     $antwoordJN = "";
-    echo($teller);
     if (isset($_POST['richting'])) {
         $richting = $_POST['richting'];
         if ($richting === 'Volgende') {
@@ -81,15 +79,25 @@ session_start();
                 $antwoordJN = $_POST['antwoordJN'];
                 //}
                 $_SESSION["alle_antwoorden"][(integer)$teller] = $antwoord." ".$antwoordJN;
-                //antwoord en antwoorJN terug op 0 *****  werkt nog niet 
-                unset($_POST['antwoord']);
-                unset($_POST['antwoordJN']);
-                var_dump($_SESSION["alle_antwoorden"]);                
-                //print($antwoord);
+                //      antwoord en antwoorJN terug op 0 
+                $antwoord = '';
+                $antwoordJN = '';
+                //var_dump($_SESSION["alle_antwoorden"]);                
             }
             $teller += 1;
             
         } else if($richting === 'Vorige') {
+            if (isset($_POST['antwoord'])){
+                $antwoord = $_POST['antwoord'];
+                //if(isset($_POST['antwoordJN'])){
+                $antwoordJN = $_POST['antwoordJN'];
+                //}
+                $_SESSION["alle_antwoorden"][(integer)$teller] = $antwoord." ".$antwoordJN;
+                //      antwoord en antwoorJN terug op 0 
+                $antwoord = '';
+                $antwoordJN = '';
+                //var_dump($_SESSION["alle_antwoorden"]);                
+            }
             $teller -= 1;
             if ($teller == -1){
                 $teller = 0;
@@ -108,6 +116,7 @@ session_start();
     <!-- css file -->
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
     <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     
     <!-- script tags -->
     <script type="text/javascript" src="jquery/jquery.js"></script>
@@ -125,8 +134,14 @@ session_start();
             document.getElementById("toonKnoppen").style.display='none';
         }
     </script>  
+     <script type="text/javascript">
+        function buttonPressed(id){
+            var property = document.getElementById(id);
+            property.style.color:"#ffffff";
+            
+    </script>
 </head>
-<body>
+<body>    
     <div id="content">
         <div id="progressbar"><div></div></div>
         <script>progress(<?php echo $teller; ?>, $('#progressbar'));</script>
@@ -136,11 +151,11 @@ session_start();
         <img id="foto_midden" src="image/foto/<?php echo $teller;?>.jpg"/>
         <p>Hoe ervaart u dit onderdeel?</p>
         <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <button type="button" class="antwoord" value="Verloopt naar wens?" onclick="showKnoppen(0)">Verloopt naar wens?</button>
-            <button type="button" class="antwoord" value="Probleem - niet hinderlijk?" onclick="showKnoppen(1)">Probleem - niet hinderlijk?</button>
-            <button type="button" class="antwoord" value="Probleem - hinderlijk voor client?" onclick="showKnoppen(2)">Probleem - hinderlijk voor client?</button>
-            <button type="button" class="antwoord" value="Probleem - hinderlijk voor mantelzorger?" onclick="showKnoppen(3)">Probleem - hinderlijk voor mantelzorger?</button>
-            <button type="button" class="antwoord" value="Probleem - hinderlijk voor beide" onclick="showKnoppen(4)">Probleem - hinderlijk voor beide</button>
+            <button type="button" id="1" class="antwoord" value="0" onclick="showKnoppen(0); buttonPressed('1')">Verloopt naar wens?</button>
+            <button type="button" id="2" class="antwoord" value="1" onclick="showKnoppen(1); buttonPressed('2')">Probleem - niet hinderlijk?</button>
+            <button type="button" id="3" class="antwoord" value="2" onclick="showKnoppen(2); buttonPressed('3')">Probleem - hinderlijk voor client?</button>
+            <button type="button" id="4" class="antwoord" value="3" onclick="showKnoppen(3); buttonPressed('4')">Probleem - hinderlijk voor mantelzorger?</button>
+            <button type="button" id="5" class="antwoord" value="4" onclick="showKnoppen(4); buttonPressed('5')">Probleem - hinderlijk voor beide</button>
             <!-- nodig voor het tonen van ja en nee knoppen -->
             <script>
                 function showKnoppen($a){
@@ -156,15 +171,15 @@ session_start();
                 }
                 
                 function keuzejanee($l){
-                        var z = document.getElementsByClassName("antwoordJN");
-                        var b = z[$l].value;
-                        document.getElementById("antwoordJN").value = b;
+                    var k = document.getElementsByClassName("antwoordJN");
+                    var m = k[$l].value;
+                    document.getElementById("antwoordJN").value = m;
                 }
             </script>
             <div id="toonKnoppen">
                 <p>Willen cliënt/mantelzorger dat hieraan gewerkt wordt?</p>
-                <button type="button" class="antwoordJN" value="Ja" onclick=keuzejanee(1)>Ja?</button>
-                <button type="button" class="antwoordJN" value="Nee" onclick=keuzejanee(2)>Nee?</button>
+                <button type="button" class="antwoordJN" value="0" onclick=keuzejanee(0)>Ja?</button>
+                <button type="button" class="antwoordJN" value="1" onclick=keuzejanee(1)>Nee?</button>
             </div>
             <div id="knoppen">
                 <input type="submit" class="knop_l" name="richting" value="Vorige" />
@@ -177,5 +192,6 @@ session_start();
             
         </form>
     </div>
+   
 </body>
 </html>
