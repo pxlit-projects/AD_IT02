@@ -16,9 +16,13 @@ Kennith Metten
     * Compatibility testing
 
 ### Instructies
-Maak een map "logs" op de C schijf (vanwege schrijfrechten voor de logging)
 Inloggen gaat met de volgende gebruikers (voor de verschillende windows te kunnen zien)
 
 1. gebruikersnaam: admin & wachtwoord: Test123
 2. gebruikersnaam: onderzoeker & wachtwoord: Test123
 3. gebruikersnaam: neuroloog & wachtwoord: Test123
+
+###Screenshots
+![ScreenShot](https://github.com/pxlit-projects/AD_IT02/blob/master/Printscreens/login.PNG)
+![ScreenShot](https://github.com/pxlit-projects/AD_IT02/blob/master/Printscreens/adminpaneel.PNG)
+![ScreenShot](https://github.com/pxlit-projects/AD_IT02/blob/master/Printscreens/hulpverlener.PNG)
