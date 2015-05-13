@@ -162,6 +162,7 @@
     <Compile Include="Controllers\OverzichtController.cs" />
     <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Controllers\PersoonsController.cs" />
+    <Compile Include="Controllers\VraagsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -193,8 +194,17 @@
     <Compile Include="Migrations\201505041452565_update22.Designer.cs">
       <DependentUpon>201505041452565_update22.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505130706389_update23.cs" />
+    <Compile Include="Migrations\201505130706389_update23.Designer.cs">
+      <DependentUpon>201505130706389_update23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505130818006_update24.cs" />
+    <Compile Include="Migrations\201505130818006_update24.Designer.cs">
+      <DependentUpon>201505130818006_update24.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categorie.cs" />
+    <Compile Include="Models\Vraag.cs" />
     <Compile Include="Models\finahbackContext.cs" />
     <Compile Include="Models\Functie.cs" />
     <Compile Include="Models\Gemeente.cs" />
@@ -276,6 +286,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505041452565_update22.resx">
       <DependentUpon>201505041452565_update22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505130706389_update23.resx">
+      <DependentUpon>201505130706389_update23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505130818006_update24.resx">
+      <DependentUpon>201505130818006_update24.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
