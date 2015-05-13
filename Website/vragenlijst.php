@@ -26,7 +26,8 @@ session_start();
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-
+        
+        //OPLETTEN de ID moet dus nog vervangen worden met het ID dat ik moet krijgen van de applicatie!!!!
         $waarden = array();
         for ($i = 0; $i <= 52; $i++) {
                 array_push($waarden, $_SESSION["alle_antwoorden"][$i]);
@@ -133,12 +134,6 @@ session_start();
         window.onload=function(){
             document.getElementById("toonKnoppen").style.display='none';
         }
-    </script>  
-     <script type="text/javascript">
-        function buttonPressed(id){
-            var property = document.getElementById(id);
-            property.style.color:"#ffffff";
-            
     </script>
 </head>
 <body>    
@@ -151,11 +146,11 @@ session_start();
         <img id="foto_midden" src="image/foto/<?php echo $teller;?>.jpg"/>
         <p>Hoe ervaart u dit onderdeel?</p>
         <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <button type="button" id="1" class="antwoord" value="0" onclick="showKnoppen(0); buttonPressed('1')">Verloopt naar wens?</button>
-            <button type="button" id="2" class="antwoord" value="1" onclick="showKnoppen(1); buttonPressed('2')">Probleem - niet hinderlijk?</button>
-            <button type="button" id="3" class="antwoord" value="2" onclick="showKnoppen(2); buttonPressed('3')">Probleem - hinderlijk voor client?</button>
-            <button type="button" id="4" class="antwoord" value="3" onclick="showKnoppen(3); buttonPressed('4')">Probleem - hinderlijk voor mantelzorger?</button>
-            <button type="button" id="5" class="antwoord" value="4" onclick="showKnoppen(4); buttonPressed('5')">Probleem - hinderlijk voor beide</button>
+            <button type="button" class="antwoord" value="0" onclick="showKnoppen(0)">Verloopt naar wens?</button>
+            <button type="button" class="antwoord" value="1" onclick="showKnoppen(1)">Probleem - niet hinderlijk?</button>
+            <button type="button" class="antwoord" value="2" onclick="showKnoppen(2)">Probleem - hinderlijk voor client?</button>
+            <button type="button" class="antwoord" value="3" onclick="showKnoppen(3)">Probleem - hinderlijk voor mantelzorger?</button>
+            <button type="button" class="antwoord" value="4" onclick="showKnoppen(4)">Probleem - hinderlijk voor beide</button>
             <!-- nodig voor het tonen van ja en nee knoppen -->
             <script>
                 function showKnoppen($a){
@@ -178,8 +173,8 @@ session_start();
             </script>
             <div id="toonKnoppen">
                 <p>Willen cliënt/mantelzorger dat hieraan gewerkt wordt?</p>
-                <button type="button" class="antwoordJN" value="0" onclick=keuzejanee(0)>Ja?</button>
-                <button type="button" class="antwoordJN" value="1" onclick=keuzejanee(1)>Nee?</button>
+                <button type="button" class="antwoordJN" value="0" onclick=keuzejanee(0)>Ja</button>
+                <button type="button" class="antwoordJN" value="1" onclick=keuzejanee(1)>Nee</button>
             </div>
             <div id="knoppen">
                 <input type="submit" class="knop_l" name="richting" value="Vorige" />
@@ -189,9 +184,7 @@ session_start();
             <input type="hidden" id="antwoord" name="antwoord" value="<?php echo htmlspecialchars($antwoord)?>" />
             <input type="hidden" id="antwoordJN" name="antwoordJN" value="<?php echo htmlspecialchars($antwoordJN)?>" />
             <input type="hidden" name="teller" value="<?php echo htmlspecialchars($teller);?>" />
-            
         </form>
     </div>
-   
 </body>
 </html>
