@@ -4,7 +4,6 @@ body{
     font-size: 20px;
 }
 
-
 /* content */
 #content{
     width: 70%;
@@ -42,7 +41,7 @@ div{
     width: 13em;
 }
 
-input[type=submit], input[type=button]{
+input[type=submit], input[type=button], button[type=button]{
     width: 12em;  
     height: 5em;
     background-color: #2dabf9;
@@ -51,7 +50,23 @@ input[type=submit], input[type=button]{
 	padding:9px 23px;
     border: 1px solid #0b0e07;
     border-radius: 3px;
+}   
+
+button[type=button].pressed{
+    background-color: greenyellow;
 }
+
+/* werkt nog niet omdat je geen isselected op een button kunt zetten enkel op a-tag */
+/*button[type=button]:visited{
+    width: 12em;  
+    height: 5em;
+    background-color: limegreen;
+    color:#ffffff;
+	font-size:15px;
+	padding:9px 23px;
+    border: 1px solid #0b0e07;
+    border-radius: 3px;
+}*/
 
 /* footer */
 #knoppen{
