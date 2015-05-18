@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="content">
-        <p>Beste meneer/mevrouw <?php /* echo $_POST(name)*/?>.</p>
+        <p>Beste meneer/mevrouw.</p>
         <div>
             De vragenlijst is doorgestuurd. U kunt de browser afsluiten.</br>Bedankt dat u onze enquête heeft ingevuld. 
         </div>
