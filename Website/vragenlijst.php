@@ -87,33 +87,15 @@ $jsonData = array(
  
 //Encode the array into JSON.
 $jsonDataEncoded = json_encode($jsonData);
-
- 
 //Tell cURL that we want to send a POST request.
 curl_setopt($ch, CURLOPT_POST, 1);
- 
 //Attach our encoded JSON string to the POST fields.
 curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
- 
 //Set the content type to application/json
 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
- 
 //Execute the request
 $result = curl_exec($ch);
-        
-        
-        
-        
-        
-        
-        
-        
 
-
-       
-       
-       
-       
 /*        // volledige gegevens doorsturen naar database   
         header('Location: voltooide_vragenlijst.php');
         $servername = "localhost";
@@ -170,22 +152,23 @@ $result = curl_exec($ch);
     }else{
         $_SESSION["alle_antwoorden"] = new SplFixedArray(53);
     }
-
     $antwoord = "";
     $antwoordJN = "";
     if (isset($_POST['richting'])) {
         $richting = $_POST['richting'];
+        
         if ($richting === 'Volgende') {
             if (isset($_POST['antwoord'])){
                 $antwoord = $_POST['antwoord'];
-                //if(isset($_POST['antwoordJN'])){
                 $antwoordJN = $_POST['antwoordJN'];
-                //}
-                $_SESSION["alle_antwoorden"][(integer)$teller] = $antwoord." ".$antwoordJN;
-                //      antwoord en antwoorJN terug op 0 
-                $antwoord = '';
-                $antwoordJN = '';
-                //var_dump($_SESSION["alle_antwoorden"]);                
+                if(($antwoordJN == "" && $antwoord == 2) || ($antwoordJN == "" && $antwoord == 3) || ($antwoordJN == "" && $antwoord == 4) || $antwoord == ""){
+                        $teller -= 1 ;
+                }else{
+                    $_SESSION["alle_antwoorden"][(integer)$teller] = $antwoord." ".$antwoordJN;
+                    //antwoord en antwoordJN terug leegmaken
+                    $antwoord = '';
+                    $antwoordJN = ''; 
+                }
             }
             $teller += 1;
             
@@ -198,13 +181,13 @@ $result = curl_exec($ch);
                 $_SESSION["alle_antwoorden"][(integer)$teller] = $antwoord." ".$antwoordJN;
                 //      antwoord en antwoorJN terug op 0 
                 $antwoord = '';
-                $antwoordJN = '';
-                //var_dump($_SESSION["alle_antwoorden"]);                
+                $antwoordJN = '';             
             }
             $teller -= 1;
             if ($teller == -1){
                 $teller = 0;
             }
+            
         }
     }     
 ?>
@@ -253,6 +236,16 @@ $result = curl_exec($ch);
             <button type="button" class="antwoord" value="2" onclick="showKnoppen(2)">Probleem - hinderlijk voor client?</button>
             <button type="button" class="antwoord" value="3" onclick="showKnoppen(3)">Probleem - hinderlijk voor mantelzorger?</button>
             <button type="button" class="antwoord" value="4" onclick="showKnoppen(4)">Probleem - hinderlijk voor beide</button>
+
+            <div id="toonKnoppen">
+                <p>Willen cliënt/mantelzorger dat hieraan gewerkt wordt?</p>
+                <button type="button" class="antwoordJN" value="0" onclick=keuzejanee(0)>Ja</button>
+                <button type="button" class="antwoordJN" value="1" onclick=keuzejanee(1)>Nee</button>
+            </div>
+            <div id="knoppen">
+                <input type="submit" class="knop_l" name="richting" value="Vorige"/>
+                <input type="submit" class="knop_r" name="richting" value="Volgende" />
+            </div>
             <!-- nodig voor het tonen van ja en nee knoppen -->
             <script>
                 function showKnoppen($a){
@@ -272,17 +265,7 @@ $result = curl_exec($ch);
                     var m = k[$l].value;
                     document.getElementById("antwoordJN").value = m;
                 }
-            </script>
-            <div id="toonKnoppen">
-                <p>Willen cliënt/mantelzorger dat hieraan gewerkt wordt?</p>
-                <button type="button" class="antwoordJN" value="0" onclick=keuzejanee(0)>Ja</button>
-                <button type="button" class="antwoordJN" value="1" onclick=keuzejanee(1)>Nee</button>
-            </div>
-            <div id="knoppen">
-                <input type="submit" class="knop_l" name="richting" value="Vorige" />
-                <input type="submit" class="knop_r" name="richting" value="Volgende" />
-            </div>
-            
+            </script>            
             <input type="hidden" id="antwoord" name="antwoord" value="<?php echo htmlspecialchars($antwoord)?>" />
             <input type="hidden" id="antwoordJN" name="antwoordJN" value="<?php echo htmlspecialchars($antwoordJN)?>" />
             <input type="hidden" name="teller" value="<?php echo htmlspecialchars($teller);?>" />
