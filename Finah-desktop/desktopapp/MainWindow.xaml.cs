@@ -44,7 +44,15 @@ namespace desktopapp
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Close();
+            try
+            {
+                Registreer registreer = new Registreer();
+                registreer.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                logger.log(ex.ToString());
+            }
         }
 
         private void Login()
