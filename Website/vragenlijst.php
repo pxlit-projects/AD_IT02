@@ -2,6 +2,7 @@
 <?php
     /* CONNECTIE DATABASE */
 session_start();
+$id = $_SESSION['id'];
     
     /* TELLER INSTELLEN */
     if (isset($_POST['teller'])) {
@@ -14,7 +15,7 @@ session_start();
     //2 einde vragenlijst
    if($teller == 52){
        header('Location: voltooide_vragenlijst.php');
-       $id=$_GET["id"];
+       
        $waarden = array();
        // The data to send to the API
        for ($i = 0; $i <= 52; $i++) {
@@ -120,11 +121,33 @@ $result = curl_exec($ch);
         $conn->close();
   */
     }
+    function getvragen($id){
+        $tel = $id+1;
+        $jsonurl = "http://finahback.azurewebsites.net/api/vragens/".$tel;
+
+        //  Initiate curl
+$ch = curl_init();
+// Disable SSL verification
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+// Will return the response, if false it print the response
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+// Set the url
+curl_setopt($ch, CURLOPT_URL,$jsonurl);
+// Execute
+$result=curl_exec($ch);
+// Closing
+curl_close($ch);
+
+$result = json_decode($result, true);
+
+
+return $result;
+    }
 
     if(isset($_SESSION["alle_vragen"])){
         // voor 1x vragen inteladen
     }else{
-        $servername = "localhost";
+      /*  $servername = "localhost";
         $username = "root";
         $password = "";
         $dbname = "project";
@@ -135,10 +158,13 @@ $result = curl_exec($ch);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         } 
-        /* DATABASE UITLEZEN EN IN ARRAY STEKEN */
+         DATABASE UITLEZEN EN IN ARRAY STEKEN 
         $sql = "SELECT vraag_id, vraag_thema, vraag FROM vragenlijst";
         $result = $conn->query($sql);
-
+*/
+        
+        
+        
         $_SESSION["alle_vragen"] = array();
         while($row = $result->fetch_assoc()) {
             array_push($_SESSION["alle_vragen"], array($row["vraag_id"], $row["vraag_thema"], $row["vraag"]));
@@ -223,11 +249,11 @@ $result = curl_exec($ch);
 </head>
 <body>    
     <div id="content">
+        
         <div id="progressbar"><div></div></div>
-        <script>progress(<?php echo $teller; ?>, $('#progressbar'));</script>
-
-        <p><?php echo($_SESSION["alle_vragen"][$teller][1]);?></p>
-        <p><?php echo($_SESSION["alle_vragen"][$teller][2]);?></p>
+       <script>progress(<?php echo $teller; ?>, $('#progressbar'));</script>
+        <p><?php $test=getvragen($teller); echo $test['vraag_thema'] ?></p>
+        <p><?php $test=getvragen($teller); echo $test['vraag'] ?></p>
         <img id="foto_midden" src="image/foto/<?php echo $teller;?>.jpg"/>
         <p>Hoe ervaart u dit onderdeel?</p>
         <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">

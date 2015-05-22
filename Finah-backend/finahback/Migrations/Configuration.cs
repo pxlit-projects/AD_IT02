@@ -40,10 +40,12 @@ namespace finahback.Migrations
              
              
              );
-            context.Categories.AddOrUpdate(x=> x.id, new Categorie() {id = 1, naam = "hersenschade", beschrijving = "schade aan de hersenen"});
+
+            
+            
 
 
-             
+
         }
     }
 }

@@ -31,5 +31,7 @@ namespace finahback.Models
         public System.Data.Entity.DbSet<finahback.Models.Overzicht> Overzichts { get; set; }
 
         public System.Data.Entity.DbSet<finahback.Models.Vraag> Vraags { get; set; }
+
+        public System.Data.Entity.DbSet<finahback.Models.vragen> vragens { get; set; }
     }
 }

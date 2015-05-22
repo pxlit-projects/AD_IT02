@@ -17,7 +17,9 @@ namespace finahback.Models
         public int PatientID { get; set; }
         [Column(TypeName = "DateTime2")]
         public DateTime tijdstip { get; set; }
-        public int rapportID { get; set; }
+        public String rapportID { get; set; }
+        public String rapportID2 { get; set; }
+        
        
         // Navigation property
         public Overzicht()
