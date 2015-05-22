@@ -45,13 +45,63 @@ namespace desktopapp
             {
                 Patient p = new Patient();
 
-                p.beschrijving = txtBeschrijving.Text;
-                Categorie cat = (Categorie)cbo_Categorie.SelectedItem;
-                p.categorie = cat.id;
-                p.relatie = (string)((ComboBoxItem)cbo_Relatie.SelectedValue).Content;
-                p.overig = txtOverig.Text;
-                p.leeftijd = (string)((ComboBoxItem)cbo_LeeftijdscatCLient.SelectedValue).Content;
-                p.mantelzorgerleeftijd = (string)((ComboBoxItem)cbo_LeeftijdscatMantel.SelectedItem).Content;
+                // Beschrijving testen
+                if (txtBeschrijving.Text != "")
+                {
+                    p.beschrijving = txtBeschrijving.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Geef een beschrijving");
+                    txtBeschrijving.Focus();
+                    return;
+                }
+                // Categorie testen
+                if (cbo_Categorie.SelectedItem != null)
+                {
+                    Categorie cat = (Categorie)cbo_Categorie.SelectedItem;
+                    p.categorie = cat.id;
+                }
+                else
+                {
+                    MessageBox.Show("Kies een categorie");
+                    return;
+                }
+                // Relatie testen
+                if (cbo_Relatie.SelectedItem != null)
+                {
+                    p.relatie = (string)((ComboBoxItem)cbo_Relatie.SelectedValue).Content;
+                }
+                else
+                {
+                    MessageBox.Show("Kies een relatie");
+                    return;
+                }
+
+                p.overig = txtOverig.Text; //mag ook leeg zijn
+
+                // leeftijd patient testen
+                if (cbo_LeeftijdscatCLient.SelectedItem != null)
+                {
+                    p.leeftijd = (string)((ComboBoxItem)cbo_LeeftijdscatCLient.SelectedValue).Content;
+                }
+                else
+                {
+                    MessageBox.Show("Kies een leeftijd voor de patient");
+                    return;
+                }
+
+                // leeftijd mantelzorger testen
+                if (cbo_LeeftijdscatMantel.SelectedItem != null)
+                {
+                    p.mantelzorgerleeftijd = (string)((ComboBoxItem)cbo_LeeftijdscatMantel.SelectedItem).Content;
+                }
+                else
+                {
+                    MessageBox.Show("Kies een leeftijd voor de mantelzorger");
+                    return;
+                }
+
                 p.hulpverlener = MainWindow.gebruiker.Id;
 
                 await dal.insertPatient(p); //wachten tot de functie is uitgevoerd
@@ -69,10 +119,13 @@ namespace desktopapp
                 overzicht.hulpverlenerID = MainWindow.gebruiker.Id;
                 overzicht.patientID = p.id;
                 overzicht.tijdstip = DateTime.Now;
+                overzicht.rapportID = "P" + p.id;
+                overzicht.rapportID2 = "M" + p.id;
                 await dal.insertOverzicht(overzicht);
 
+                AanvraagResult aanvraagresult = new AanvraagResult(p.id);
                 this.Close();
-                MessageBox.Show("Aanvraag is opgeslagen!", "Aanvraag", MessageBoxButton.OK, MessageBoxImage.Information);
+                aanvraagresult.ShowDialog();
             }
             catch (Exception ex)
             {

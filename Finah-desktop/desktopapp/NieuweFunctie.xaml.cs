@@ -34,9 +34,29 @@ namespace desktopapp
             {
                 Functie f = new Functie();
 
-                f.functienaam = txtfunctienaam.Text;
-                f.beschrijving = txtfunctiebeschrijving.Text;
-
+                // Naam testen
+                if (txtfunctienaam.Text != "")
+                {
+                    f.functienaam = txtfunctienaam.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Geef een functienaam");
+                    txtfunctienaam.Focus();
+                    return;
+                }
+                // Naam testen
+                if (txtfunctiebeschrijving.Text != "")
+                {
+                    f.beschrijving = txtfunctiebeschrijving.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Geef een functie beschrijving");
+                    txtfunctiebeschrijving.Focus();
+                    return;
+                }
+                
                 await dal.insertFunctie(f);
 
                 this.Close(); 

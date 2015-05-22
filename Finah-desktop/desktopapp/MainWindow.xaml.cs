@@ -86,7 +86,7 @@ namespace desktopapp
                     }
                     else
                     {
-                        MessageBox.Show("Dit account is gedeactiveerd, neem contact op met de beheerder", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Dit account is niet geactiveerd, neem contact op met de beheerder", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
                     }     
                 }
             }

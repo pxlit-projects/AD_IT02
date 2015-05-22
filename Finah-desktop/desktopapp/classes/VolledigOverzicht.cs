@@ -18,7 +18,8 @@ namespace desktopapp.classes
         public string mantelzorgerleeftijd { get; set; }
         public string relatie { get; set; }
         public DateTime tijdstip { get; set; }
-        public int rapportID { get; set; }
+        public string rapportID { get; set; }
+        public string rapportID2 { get; set; }
 
         public VolledigOverzicht()
         {
@@ -35,6 +36,7 @@ namespace desktopapp.classes
             this.relatie = p.relatie;
             this.tijdstip = o.tijdstip;
             this.rapportID = o.rapportID;
+            this.rapportID2 = o.rapportID2;
         }
     }
 }

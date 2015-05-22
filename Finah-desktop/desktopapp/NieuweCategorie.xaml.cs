@@ -34,9 +34,29 @@ namespace desktopapp
             {
                 Categorie cat = new Categorie();
 
-                cat.naam = txtcategorienaam.Text;
-                cat.beschrijving = txtcategoriebeschrijving.Text;
-
+                // Naam testen
+                if (txtcategorienaam.Text != "")
+                {
+                    cat.naam = txtcategorienaam.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Geef een categorienaam");
+                    txtcategorienaam.Focus();
+                    return;
+                }
+                // Naam testen
+                if (txtcategoriebeschrijving.Text != "")
+                {
+                    cat.beschrijving = txtcategoriebeschrijving.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Geef een categorie beschrijving");
+                    txtcategoriebeschrijving.Focus();
+                    return;
+                }
+                
                 await dal.insertCategorie(cat);
 
                 this.Close(); 

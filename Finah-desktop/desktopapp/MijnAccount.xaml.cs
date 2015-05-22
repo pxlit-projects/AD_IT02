@@ -41,6 +41,7 @@ namespace desktopapp
                 if (aangepast == false)
                 {
                     TextboxEnable(true);
+                    login.IsEnabled = false;
                     aanpassen.Content = "Updaten";
                     aangepast = true;
                 }
@@ -90,6 +91,7 @@ namespace desktopapp
                 telefoon.IsEnabled = b;
                 gsm.IsEnabled = b;
                 bedrijf.IsEnabled = b;
+                email.IsEnabled = b;
             }
             catch (Exception ex)
             {
@@ -113,6 +115,7 @@ namespace desktopapp
                 telefoon.Text = MainWindow.gebruiker.telefoon.ToString();
                 gsm.Text = MainWindow.gebruiker.gsm.ToString();
                 bedrijf.Text = MainWindow.gebruiker.bedrijf.ToString();
+                email.Text = MainWindow.gebruiker.email.ToString();
             }
             catch (Exception ex)
             {
@@ -135,6 +138,7 @@ namespace desktopapp
                 MainWindow.gebruiker.telefoon = telefoon.Text;
                 MainWindow.gebruiker.gsm = gsm.Text;
                 MainWindow.gebruiker.bedrijf = bedrijf.Text;
+                MainWindow.gebruiker.email = email.Text;
                 MainWindow.gebruiker.functieID = MainWindow.gebruiker.functieID;
             }
             catch (Exception ex)

@@ -13,7 +13,8 @@ namespace desktopapp.classes
         public int hulpverlenerID { get; set; }
         public int patientID { get; set; }
         public DateTime tijdstip { get; set; }
-        public int rapportID { get; set; }
+        public string rapportID { get; set; }
+        public string rapportID2 { get; set; }
 
         public Overzicht()
         {

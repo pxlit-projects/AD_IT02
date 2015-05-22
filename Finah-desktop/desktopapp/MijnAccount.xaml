@@ -3,23 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Mijn Account" Height="349" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Background="#48a9e4">
-        <TextBox x:Name="voornaam" HorizontalAlignment="Left" Height="23" Margin="333,45,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="geboorte" HorizontalAlignment="Left" Height="23" Margin="333,73,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="straat" HorizontalAlignment="Left" Height="23" Margin="333,129,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="gsm" HorizontalAlignment="Left" Height="23" Margin="333,157,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="bevestig" HorizontalAlignment="Left" Height="23" Margin="333,213,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="voornaam" HorizontalAlignment="Left" Height="23" Margin="333,45,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="134"/>
+        <TextBox x:Name="geboorte" HorizontalAlignment="Left" Height="23" Margin="333,73,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="134"/>
+        <TextBox x:Name="straat" HorizontalAlignment="Left" Height="23" Margin="333,101,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="134"/>
+        <TextBox x:Name="gsm" HorizontalAlignment="Left" Height="23" Margin="333,129,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="134"/>
+        <TextBox x:Name="email" HorizontalAlignment="Left" Height="23" Margin="333,157,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="134"/>
+        <TextBox x:Name="bevestig" HorizontalAlignment="Left" Height="23" Margin="333,213,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="134"/>
         <Label Content="Voornaam:" HorizontalAlignment="Left" Margin="260,45,0,0" VerticalAlignment="Top"/>
         <Label Content="Geboortedatum:" HorizontalAlignment="Left" Margin="231,73,0,0" VerticalAlignment="Top"/>
-        <Label Content="Straat:" HorizontalAlignment="Left" Margin="285,129,0,0" VerticalAlignment="Top"/>
-        <Label Content="GSM:" HorizontalAlignment="Left" Margin="290,157,0,0" VerticalAlignment="Top"/>
+        <Label Content="Straat:" HorizontalAlignment="Left" Margin="285,101,0,0" VerticalAlignment="Top"/>
+        <Label Content="GSM:" HorizontalAlignment="Left" Margin="290,129,0,0" VerticalAlignment="Top"/>
+        <Label Content="Email:" HorizontalAlignment="Left" Margin="287,155,0,0" VerticalAlignment="Top"/>
         <Label Content="Bevestig:" HorizontalAlignment="Left" Margin="271,213,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="naam" HorizontalAlignment="Left" Height="23" Margin="90,45,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="geslacht" HorizontalAlignment="Left" Height="23" Margin="90,73,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="bedrijf" HorizontalAlignment="Left" Height="23" Margin="90,101,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="postcode" HorizontalAlignment="Left" Height="23" Margin="90,129,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="telefoon" HorizontalAlignment="Left" Height="23" Margin="90,157,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="login" HorizontalAlignment="Left" Height="23" Margin="90,185,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="wachtwoord" HorizontalAlignment="Left" Height="23" Margin="90,213,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="naam" HorizontalAlignment="Left" Height="23" Margin="90,45,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="134"/>
+        <TextBox x:Name="geslacht" HorizontalAlignment="Left" Height="23" Margin="90,73,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="134"/>
+        <TextBox x:Name="bedrijf" HorizontalAlignment="Left" Height="23" Margin="90,101,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="134"/>
+        <TextBox x:Name="postcode" HorizontalAlignment="Left" Height="23" Margin="90,129,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="134"/>
+        <TextBox x:Name="telefoon" HorizontalAlignment="Left" Height="23" Margin="90,157,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="134"/>
+        <TextBox x:Name="login" HorizontalAlignment="Left" Height="23" Margin="90,185,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="134"/>
+        <TextBox x:Name="wachtwoord" HorizontalAlignment="Left" Height="23" Margin="90,213,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="134"/>
         <Label Content="Naam:" HorizontalAlignment="Left" Margin="47,45,0,0" VerticalAlignment="Top"/>
         <Label Content="Geslacht:" HorizontalAlignment="Left" Margin="27,73,0,0" VerticalAlignment="Top"/>
         <Label Content="Bedrijf:" HorizontalAlignment="Left" Margin="38,101,0,0" VerticalAlignment="Top"/>

@@ -22,13 +22,35 @@ namespace desktopapp
     {
         private DAL dal = new DAL();
         private Logger logger = new Logger();
+        private List<VolledigOverzicht> volledigoverzicht;
+        private List<Overzicht> overzichten;
+        private List<Patient> patienten;
+        private VolledigOverzicht v;
 
         public onderzoeker()
         {
             InitializeComponent();
             try
             {
-                this.dg_OverzichtOnderzoeker.DataContext = dal.getOverzicht();
+                volledigoverzicht = new List<VolledigOverzicht>();
+                overzichten = dal.getOverzicht();
+                patienten = dal.getPatienten();
+
+                foreach (Overzicht o in overzichten)
+                {
+                        foreach (Patient p in patienten)
+                        {
+                            if (o.patientID == p.id)
+                            {
+                                if (o != null & p != null)
+                                {
+                                    v = new VolledigOverzicht(p, o);
+                                    volledigoverzicht.Add(v);
+                                }
+                            }
+                        }
+                }
+                this.dg_OverzichtOnderzoeker.DataContext = volledigoverzicht;
             }
             catch (Exception ex)
             {

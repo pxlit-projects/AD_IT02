@@ -7,10 +7,28 @@
         <Label Content="Finah" HorizontalAlignment="Left" Margin="140,59,0,0" VerticalAlignment="Top" FontSize="30" Foreground="White"/>
         <Button Content="Mijn Account" HorizontalAlignment="Left" Margin="818,26,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
         <Button Content="Uitloggen" HorizontalAlignment="Left" Margin="910,26,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <TabControl HorizontalAlignment="Left" Height="436" Margin="140,160,0,0" VerticalAlignment="Top" Width="718">
+        <TabControl HorizontalAlignment="Left" Height="436" Margin="54,160,0,0" VerticalAlignment="Top" Width="884">
             <TabItem Header="Overzicht">
                 <Grid Background="#FFFFFF">
-                    <DataGrid ItemsSource="{Binding}" x:Name="dg_OverzichtOnderzoeker" HorizontalAlignment="Left" Margin="26,39,0,0" VerticalAlignment="Top" Height="340" Width="660"/>
+                    <DataGrid ItemsSource="{Binding}" x:Name="dg_OverzichtOnderzoeker" HorizontalAlignment="Left" Margin="26,36,0,0" VerticalAlignment="Top" Height="343" Width="826" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tijdstip" IsReadOnly="True" Width="*" Binding="{Binding tijdstip,StringFormat={}\{0:dd/MM/yyyy HH:mm:ss\}}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Info" IsReadOnly="True" Width="*" Binding="{Binding patientbeschrijving}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Categorie" IsReadOnly="True" Width="*" Binding="{Binding categorie}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Relatie" IsReadOnly="True" Width="*" Binding="{Binding relatie}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="P_leeftijd" IsReadOnly="True" Width="*" Binding="{Binding patientleeftijd}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="M_leeftijd" IsReadOnly="True" Width="*" Binding="{Binding mantelzorgerleeftijd}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="P_rapport" IsReadOnly="True" Width="*" Binding="{Binding rapportID}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="M_rapport" IsReadOnly="True" Width="*" Binding="{Binding rapportID2}"></DataGridTextColumn>
+                            <DataGridTemplateColumn Header="Rapport">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Rapport"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
         </TabControl>
